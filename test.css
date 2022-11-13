@@ -1,0 +1,151 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html , body , .all{
+    height: 100%;
+    width: 100%;
+    background-color: antiquewhite;
+}
+.all{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card{
+    height: 427px;
+    width: 266px;
+    background-color: white;
+    box-sizing: border-box;
+    box-shadow: 0 0 24px rgb(81 87 103 / 16%);
+    padding: 20px;
+    border: 1px;
+    border-radius: 6px;
+}
+.first{
+    box-sizing: content-box;
+    height: 48px;
+    width: 224px;
+    margin-bottom: 16px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.img{
+    height: 48px;
+    width: 48px;
+    border-radius: 24px;
+    margin-right: 12px;
+}
+.yhm{
+    width: 164px;
+}
+.yh{
+    font-size:12px;
+    position: absolute;
+    top:25px;
+}
+.second{
+    height: 27px;
+    width: 207px;
+    padding: 6px 8px 8px 8px;
+    margin-bottom: 16px;
+    border-radius: 4px;
+    background-image:  url(https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/img/progress-bar.a63566c.png);
+}
+.second >div{
+    font-size: 12px;
+    color: #1e80ff;
+}
+.dj{
+    font-weight: bold;
+}
+.fs{
+    position: absolute;
+    right: 0px;
+}
+.bar{
+    width: 208px;
+    height: 5px;
+    border-radius: 4px;
+    background: rgb(255, 255, 0);
+    position: relative;
+}
+.current{
+    width: 50px;
+    height: 5px;
+    background:#1e80ff;
+    border-radius: 4px;
+    position: absolute;
+    left: 0px;
+}
+.third{
+    height: 40px;
+    width: 224px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f1f2f5;
+    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.sz{
+    font-size: 16px;
+    margin-bottom: 4px;
+    color: black;
+}
+.wz{
+    font-size: 12px;
+    color: #909090;
+}
+.third >div{
+    width: 74px;
+    height: 18px;
+    text-align: center;
+}
+.fourth{
+    height: 160px;
+    width: 224px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f1f2f5;
+    font-size: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.fourth > div{
+    height: 40px;
+    width: 104px;
+}
+.fourth > div:hover{
+    cursor: pointer;
+    background-color: #f1f2f5;
+    border-radius: 2px;
+    color: #007fff;
+}
+.cent{
+    display: flex;
+    flex-wrap:wrap ;
+}
+.svgs{
+    width: 20px;
+    height: 20px;
+    margin: 0px 8px 0px 8px;
+}
+.zj{
+    width: 56px;
+    height: 40px;
+}
+.five{
+    height: 18px;
+    width: 224px;
+    margin-top: 12px;
+    display: flex;
+    font-size: 12px;
+    justify-content: space-between;
+    color: #909090;
+}
+.five > div:hover{
+    cursor: pointer;
+    color: #007fff;
+}
