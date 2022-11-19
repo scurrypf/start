@@ -1,0 +1,53 @@
+$co:aqua;
+$cd:800px;
+@import "./var.scss";
+@mixin fle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@mixin font-size($size, $color,$weight){
+    font-size:$size ;
+    color: $color;
+    font-weight:$weight ;
+}
+@mixin sti {
+    position: sticky;
+    top:5px;
+}
+.fir{
+    background-color: $co;
+    width: $cd;
+    height: 400px;
+    @include fle();
+    flex-wrap: wrap;
+    @include sti();
+    span{
+        color: $co;
+    }
+
+    div{
+        background-color: antiquewhite;
+        @include font-size(20px,blue ,bold);
+    }
+    &:hover{
+        cursor: pointer;
+    }
+    &:hover + .sec{
+        background-color: blueviolet;
+    }
+}
+.sec{
+    height: 150px;
+    width: $cd;
+    @include fle();
+    @include font-size(15px,red ,30px );
+}
+.thir{
+    @extend %jc;
+}
+.four{
+    @extend .thir;
+    height: 200px;
+    width: 300px;
+}
