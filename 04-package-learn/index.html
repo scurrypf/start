@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Http</title>
+    <script src="http://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        #H-W{
+            font-size: 16px;
+            color: aqua;
+            font-weight: bold;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .container{
+            position: absolute;
+            top:50%;left:50%;
+            transform: translate(-50%,-50%);
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <img height="749px" width="1533px" src="D:\steam\a-yyyys\xh\心海.jpeg">
+    <div class="container">
+    <div>
+        <span>用户名</span>
+        <input type="text" id="userid"/>
+    </div>
+    <div>
+        <span>密&emsp;码</span>
+        <input type="password" id="pass"/>
+    </div>
+    <button id="but">登录</button>
+    <div>
+        <input type="text" id="cs"/>
+        <button id="select">查询</button>
+    </div>
+    <div id="H-W"></div>
+    </div>
+    <script>
+        const user='sc',pass='1234';
+        async function main(){
+            const result= await axios.get(`http://jisutqybmf.market.alicloudapi.com/weather/query`,{
+                headers:{
+                    Authorization:'APPCODE d686570081264047b8b7aaec01fb82dc'
+                },
+                params:{
+                    city: getCityname()
+                }
+            })
+            console.log(result.data.result.weather);
+            HW(result.data.result.weather);
+        }
+        
+        //city
+        function getCityname(){
+            const city1=document.getElementById('cs');
+            console.log(city1.value)
+            return city1.value;
+        }
+        const button1 = document.getElementById('select');
+        button1.addEventListener('click',()=>{
+            main()
+        })
+        //div显示
+        function HW(text){
+            const txt = document.getElementById('H-W');
+            txt.innerHTML=text;
+        }
+        //登录验证
+        function pdmm(){
+            const user1 = document.getElementById('userid').value;
+            const pass1 = document.getElementById('pass').value;
+            if(user1=="sc" && pass1=="123456"){
+                window.alert("登录成功,欢迎使用!");
+            }else{
+                window.alert("登录失败,账号或密码错误!!!!!");
+            }
+        }
+        const button = document.getElementById("but");
+        button.addEventListener('click',()=>{
+            pdmm();
+        })
+    </script>   
+</body>
+</html>
