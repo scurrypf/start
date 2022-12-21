@@ -5,8 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VUE-HTTP</title>
-    <script src="http://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- vue3导入必须在组件前面 -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- Import style -->
+    <link rel="stylesheet" href="https://unpkg.com/element-plus/dist/index.css">
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-plus"></script>
+    <script src="http://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <style>
         *{
             padding: 0;
@@ -24,6 +29,14 @@
             transform: translate(-50%,-50%);
             z-index: 999;
         }
+        .jz{
+            display: flex;
+            justify-content: center;
+        }
+        .bet{
+            display: flex;
+            justify-content: space-between;
+        }
     </style>
 </head>
 <body>
@@ -32,22 +45,27 @@
     <div id="H-W">{{message}}</div>
     <div>
         <span>用户名</span>
-        <input type="text" v-model="user"/>
+        <el-input v-model="user" class="w-50 m-2" size="small" placeholder="请输入用户名" />
     </div>
     <div>
         <span>密&emsp;码</span>
-        <input type="password" v-model="password"/>
+        <el-input v-model="password" type="password" class="w-50 m-2" size="small" placeholder="请输入密码" />
     </div>
-    <button id="but" @click="pdmm">登录</button>
+    <div class="bet">
+        <el-button type="primary" @click="pdmm" plain>登录</el-button>
+        <el-button type="primary" plain>注册</el-button>
+    </div>
     <div>
-        <input type="text" id="cs" v-model="city"/>
-        <button id="select" @click="main">查询</button>
+        <el-input v-model="city" class="w-50 m-2" placeholder="请输入城市" :suffix-icon="Calendar" />
+    </div>
+    <div class="jz">
+        <el-button type="primary" @click="main" plain>查询</el-button>
     </div>
     <div id="H-W">{{city}}市&emsp;{{week}}&emsp;{{weather}}</div>
     </div>
     <script>
         const { createApp } = Vue
-        const vue1=createApp({
+        const vue1 = createApp({
             data() {
             return {
                 message: 'Hello World!',
@@ -82,7 +100,8 @@
             }
         }
             }
-        })   
+        })
+        vue1.use(ElementPlus);
         vue1.mount('#app');
     </script>   
 </body>
