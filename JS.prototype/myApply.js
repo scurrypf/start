@@ -1,4 +1,4 @@
-Function.prototype.myApply() = function (obj,args){//传入对象与数组
+Function.prototype.myApply = function (obj,args){//传入对象与数组
     if(this===Function.prototype){//防止直接被调用
         return undefined;
     }

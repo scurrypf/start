@@ -1,4 +1,4 @@
-Function.prototype.myCall() = function (obj,...args){//传入对象与数值
+Function.prototype.myCall = function (obj,...args){//传入对象与数值
     if(this===Function.prototype){
         return undefined;
     }
