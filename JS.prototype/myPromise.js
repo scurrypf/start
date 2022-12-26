@@ -36,6 +36,7 @@ class myPromise{
         onRejected = typeof onRejected === 'function' ? onRejected : reason =>{
             throw reason;
         }
+        const promise2 = new myPromise((resolve,reject)=>{
         if(this.promiseState===PENDING){
             this.onFullfilledCallback.push(()=>{
                 setTimeout(()=>{
@@ -47,17 +48,17 @@ class myPromise{
                     onRejected(this.promiseResult);
                 });
             });
-        }
-        if(this.promiseState===FULLFILLED){
+        }else if(this.promiseState===FULLFILLED){
             setTimeout(()=>{
                 onFullfilled(this.promiseResult)
             });
-        }
-        if(this.promiseState===REJECTED){
+        }else if(this.promiseState===REJECTED){
             setTimeout(()=>{
                 onRejected(this.promiseResult);
             });
         }
+    })
+    return promise2;
     }
 }
 //验证代码
@@ -79,26 +80,26 @@ class myPromise{
 // p1.then(res =>console.log(res),reas =>console.log(reas))
 // p2.then(undefined,reason =>{ console.log(reason)})
 // 测试代码
-console.log(1);
-let promise1 = new myPromise((resolve, reject) => {
-    console.log(2);
-    setTimeout(() => {
-        console.log('A', promise1.promiseState);
-        resolve('这次一定');
-        console.log('B', promise1.promiseState);
-        console.log(4);
-    });
-})
-promise1.then(
-    result => {
-        console.log('C', promise1.promiseState);
-        console.log('fulfilled:', result);
-    },
-    reason => {
-        console.log('rejected:', reason)
-    }
-)
-console.log(3);
+// console.log(1);
+// let promise1 = new myPromise((resolve, reject) => {
+//     console.log(2);
+//     setTimeout(() => {
+//         console.log('A', promise1.promiseState);
+//         resolve('这次一定');
+//         console.log('B', promise1.promiseState);
+//         console.log(4);
+//     });
+// })
+// promise1.then(
+//     result => {
+//         console.log('C', promise1.promiseState);
+//         console.log('fulfilled:', result);
+//     },
+//     reason => {
+//         console.log('rejected:', reason)
+//     }
+// )
+// console.log(3);
 const promise = new myPromise((resolve, reject) => {
     setTimeout(() => {
         resolve('success')
@@ -107,12 +108,6 @@ const promise = new myPromise((resolve, reject) => {
 promise.then(value => {
     console.log(1)
     console.log('resolve', value)
-})
-promise.then(value => {
-    console.log(2)
-    console.log('resolve', value)
-})
-promise.then(value => {
-    console.log(3)
-    console.log('resolve', value)
-})
+    return value;
+}).then(value => console.log(value));
+
