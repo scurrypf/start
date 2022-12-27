@@ -13,7 +13,9 @@
   </div>    -->
   <div id="app">
     <div class="nav">
-        <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+      <div>
+        <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" background-color="#545c64" 
+        text-color="#fff" active-text-color="#ffd04b">
           <el-menu-item index="1">主页</el-menu-item>
           <el-submenu index="2">
           <template slot="title">我的工作台</template>
@@ -32,6 +34,7 @@
           <el-menu-item index="5"><a href="https://www.yuque.com/scurry-9rjnt/hmh9vi?# " target="_blank">语雀知识库</a></el-menu-item>
           <el-menu-item index="6">个人中心</el-menu-item>
           </el-menu>
+        </div>  
       </div>
     <div class="container">
       <div class="bgimg">
@@ -88,7 +91,8 @@ export default {
       // face:'false',
       // Arr:[1,2,3,4,5,6],
       user:'',
-      pass:''
+      pass:'',
+      activeIndex:'1'
     }
   },
   methods: {
@@ -202,5 +206,10 @@ html,body{
     justify-content: center;
     align-items: center;
   }
+}
+.nav{
+  display: flex;
+  justify-content: center;
+  background-color: #545c64;
 }
 </style>
