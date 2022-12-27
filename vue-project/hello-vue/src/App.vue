@@ -12,11 +12,33 @@
     <div>用户名：{{ user }}密码：{{ pass }}</div>
   </div>    -->
   <div id="app">
+    <div class="nav">
+        <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+          <el-menu-item index="1">主页</el-menu-item>
+          <el-submenu index="2">
+          <template slot="title">我的工作台</template>
+            <el-menu-item index="2-1">选项1</el-menu-item>
+            <el-menu-item index="2-2">选项2</el-menu-item>
+            <el-menu-item index="2-3">选项3</el-menu-item>
+            <el-submenu index="2-4">
+              <template slot="title">选项4</template>
+                <el-menu-item index="2-4-1">选项1</el-menu-item>
+                <el-menu-item index="2-4-2">选项2</el-menu-item>
+                <el-menu-item index="2-4-3">选项3</el-menu-item>
+          </el-submenu>
+          </el-submenu>
+          <el-menu-item index="3">消息中心</el-menu-item>
+          <el-menu-item index="4"><a href="https://github.com/scurrypf" target="_blank">GitHub</a></el-menu-item>
+          <el-menu-item index="5"><a href="https://www.yuque.com/scurry-9rjnt/hmh9vi?# " target="_blank">语雀知识库</a></el-menu-item>
+          <el-menu-item index="6">个人中心</el-menu-item>
+          </el-menu>
+      </div>
     <div class="container">
       <div class="bgimg">
         <img src="./assets/心海.jpeg" height="830px" width="1703px">
       </div>
-      <div class="right"></div>
+      <div class="right">
+      </div>
       <div class="left">
         <el-form ref="form" :model="form" label-width="80px">
           <div class="form">
@@ -28,14 +50,29 @@
           <el-form-item label="密码：">
             <el-input v-model="pass" type="password" placeholder="请输入密码" size="meadium"/>
           </el-form-item>
+          <el-checkbox v-model="checked">记住密码</el-checkbox>
           <el-form-item>
             <el-button @click="pdMM">登录</el-button>
-            <el-button >退出</el-button>
+            <el-button @click="add1">注册</el-button>
           </el-form-item>
+          </div>
+          <div class="form-foot">
+          <span>忘记密码</span>
+          <span>退出登录</span>
           </div>
         </el-form>
       </div>
     </div>
+    <div style="height: 30px"></div>
+    <div class="footer">
+      <div class="us">
+      <div>关于我们</div>
+      <div>加入我们</div>
+      <div>联系我们</div>
+      </div>
+      <div class="give">copyRight@Tencent2002-2022</div>
+    </div>
+    <div style="height: 30px"></div>
   </div>
 </template>
 
@@ -63,6 +100,16 @@ export default {
         }); 
         }else{
           this.$message.error('登录失败，账号或密码错误');
+        }
+      },
+    add1 () {
+        if(this.user!=="" && this.pass!==""){
+          this.$message({
+            message: `注册成功,用户名为${this.user},密码为${this.pass}`,
+            type: 'success'
+        }); 
+        }else{
+          this.$message.error('注册失败，请输入用户名和密码');
         }
       },
   },
@@ -105,6 +152,7 @@ html,body{
   width: 400px;
   height: 350px;
   background-color: white;
+  border-radius: 6px;
 }
 .form{
   padding: 50px 50px 0 50px;
@@ -115,5 +163,44 @@ html,body{
   color: #409EFF;
   font-family:'Courier New', Courier, monospace;
   font-weight: bold;
+}
+.form-foot{
+  text-align: right;
+  span{
+    font-size: 14px;
+    margin-left: 5px;
+    color: #606266;
+    &:hover{
+      cursor: pointer;
+      color: #409EFF;
+    }
+  }
+}
+.el-menu-item:hover{
+  cursor: pointer;
+  color: #409EFF;
+}
+.footer{
+  color: #606266;
+  font-size: 14px;
+  .us{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    div{
+      padding: 0 5px 0 5px;
+      &:hover{
+        cursor: pointer;
+        color: #409EFF;
+      }
+    }
+  }
+  .give{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
 }
 </style>
