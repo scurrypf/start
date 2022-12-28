@@ -14,7 +14,7 @@
   <div id="app">
     <div class="nav">
       <div>
-        <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" background-color="#545c64" 
+        <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal"  background-color="#545c64" 
         text-color="#fff" active-text-color="#ffd04b">
           <el-menu-item index="1">主页</el-menu-item>
           <el-submenu index="2">
@@ -38,12 +38,18 @@
       </div>
     <div class="container">
       <div class="bgimg">
-        <img src="./assets/心海.jpeg" height="830px" width="1703px">
+        <img src="./assets/心海.jpeg" height="800px" width="1532px">
       </div>
       <div class="right">
+        <div>
+        <first-component v-if="isFirst" :info="msg"></first-component>
+        <div>This Is My House!</div>
+        <div>You must first sign in !!!</div>
+        <div>用户名：{{ user }}密码：{{ reversePass }}</div>
+        </div>
       </div>
       <div class="left">
-        <el-form ref="form" :model="form" label-width="80px">
+        <el-form  label-width="80px">
           <div class="form">
             <div class="loginToast">欢迎登录！</div>
             <el-divider></el-divider>
@@ -53,7 +59,7 @@
           <el-form-item label="密码：">
             <el-input v-model="pass" type="password" placeholder="请输入密码" size="meadium"/>
           </el-form-item>
-          <el-checkbox v-model="checked">记住密码</el-checkbox>
+          <el-checkbox>记住密码</el-checkbox>
           <el-form-item>
             <el-button @click="pdMM">登录</el-button>
             <el-button @click="add1">注册</el-button>
@@ -80,10 +86,16 @@
 </template>
 
 <script>
+//引入，要放在export外面
+import FirstComponent from './components/FirstComponent.vue';
+
 export default {
   //预定义属性
   name: 'App',
   //组件中所有的响应式数据
+  components:{
+    FirstComponent,
+  },
   data: function (){
     return {
       // message: 'Hello World',
@@ -92,8 +104,28 @@ export default {
       // Arr:[1,2,3,4,5,6],
       user:'',
       pass:'',
-      activeIndex:'1'
+      activeIndex:'1',
+      isFirst:true,
+      msg:'Input 默认值',
     }
+  },
+  computed:{
+    reversePass:function(){
+      return this.pass.split('').reverse().join('');
+    }
+  },
+  watch: {
+    user: function(newVlue,oldValue){
+      console.log(newVlue,oldValue);
+      // immediate:true;
+    },
+    pass: {
+            handler: function (newValue, oldValue) {
+                console.log('message', newValue)
+                console.log('message', oldValue)
+            },
+            immediate: true
+        }
   },
   methods: {
     pdMM () {
@@ -122,7 +154,16 @@ export default {
     //当该节点被挂载时触发
     setTimeout(()=>{
       this.face=true;
+      //this.isFirst=false;
+    },2000),
+    setTimeout(()=>{
+      this.msg='Info的值变化了';
+      //this.isFirst=false;
     },2000)
+
+    // setInterval(()=>{
+    //   this.isFirst=!this.isFirst;
+    // },2000)
   }
 }
 </script>
@@ -144,6 +185,19 @@ html,body{
 .right{
   width: 60%;
   height: 830px;
+  div{
+    padding-top: 50px;
+    padding-left: 30px;
+    div{
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 35px;
+      font-weight: bold;
+      background: -webkit-linear-gradient(315deg,#5018ab7a 25%,#ff6467);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
 }
 .left{
   width: 700px;
