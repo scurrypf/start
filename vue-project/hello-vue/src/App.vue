@@ -19,14 +19,14 @@
           <el-menu-item index="1">主页</el-menu-item>
           <el-submenu index="2">
           <template slot="title">我的工作台</template>
-            <el-menu-item index="2-1">选项1</el-menu-item>
-            <el-menu-item index="2-2">选项2</el-menu-item>
-            <el-menu-item index="2-3">选项3</el-menu-item>
+            <el-menu-item index="2-1">la</el-menu-item>
+            <el-menu-item index="2-2">lala</el-menu-item>
+            <el-menu-item index="2-3">lalala</el-menu-item>
             <el-submenu index="2-4">
-              <template slot="title">选项4</template>
-                <el-menu-item index="2-4-1">选项1</el-menu-item>
-                <el-menu-item index="2-4-2">选项2</el-menu-item>
-                <el-menu-item index="2-4-3">选项3</el-menu-item>
+              <template slot="title">lalala</template>
+                <el-menu-item index="2-4-1">kokomi</el-menu-item>
+                <el-menu-item index="2-4-2">xh</el-menu-item>
+                <el-menu-item index="2-4-3">shg</el-menu-item>
           </el-submenu>
           </el-submenu>
           <el-menu-item index="3">消息中心</el-menu-item>
@@ -42,7 +42,8 @@
       </div>
       <div class="right">
         <div>
-        <first-component v-if="isFirst" :info="msg"></first-component>
+        <first-component v-if="isFirst" :info="msg" @send-localinfo="getlocalinfo" @sendlocalcompute="getlocalcompute"></first-component>
+        <div>Welcome To My Website!!!</div>
         <div>This Is My House!</div>
         <div>You must first sign in !!!</div>
         <div>用户名：{{ user }}密码：{{ reversePass }}</div>
@@ -148,6 +149,12 @@ export default {
           this.$message.error('注册失败，请输入用户名和密码');
         }
       },
+      getlocalinfo(v){
+        this.msg=v;
+      },
+      getlocalcompute(v){
+        this.msg=v;
+      }
   },
   //生命周期函数之一
   mounted(){
