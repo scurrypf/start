@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
+import BallFirst from './components/BallFirst.vue'
 // 引入elementui
 import ElementUI from 'element-ui';
 // 引入elementui css
@@ -10,5 +11,6 @@ Vue.use(ElementUI);
 Vue.config.productionTip = false
 
 new Vue({
-  render: h => h(App),
+  //render: h => h(BallFirst),
+  render: h => h(App)
 }).$mount('#app')
