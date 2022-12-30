@@ -1,6 +1,7 @@
 <template>
     <div>
-        <BallSecond :ball="firstBall" @second-ball="getSecond"></BallSecond>
+        <!-- <BallSecond :ball="firstBall" @second-ball="getSecond"></BallSecond> -->
+        <BallSecond :val="toSecond" @sentTOfirst="getSecond1"></BallSecond>
     </div>
 </template>
 
@@ -14,13 +15,18 @@ export default{
     },
     data:function(){
         return {
-            firstBall:0,
+            //firstBall:0,
+            toSecond:10000,
         }
     },
     methods:{
-        getSecond(v){
-            this.firstBall=v+1;
-            console.log('firstTosecond',this.firstBall);
+        // getSecond(v){
+        //     this.firstBall=v+1;
+        //     console.log('firstTosecond',this.firstBall);
+        // }
+        getSecond1(value){
+            this.toSecond=value;
+            console.log(this.toSecond,value);
         }
     }
     
