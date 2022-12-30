@@ -11,11 +11,11 @@
     <el-input v-model="pass" type="password" placeholder="请输入密码" size="small"/>
     <div>用户名：{{ user }}密码：{{ pass }}</div>
   </div>    -->
-  <div id="app">
+  <div >
     <div class="nav">
-      <div>
+      <div class="stick">
         <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal"  background-color="#545c64" 
-        text-color="#fff" active-text-color="#ffd04b">
+        text-color="#fff" active-text-color="#409EFF">
           <el-menu-item index="1">主页</el-menu-item>
           <el-submenu index="2">
           <template slot="title">我的工作台</template>
@@ -38,11 +38,12 @@
       </div>
     <div class="container">
       <div class="bgimg">
-        <img src="./assets/心海.jpeg" height="800px" width="1532px">
+        <img src="./assets/心海.jpeg" height="830px" width="1532px" opacity="0.75">
       </div>
       <div class="right">
         <div>
         <first-component v-if="isFirst" :info="msg" @send-localinfo="getlocalinfo" @sendlocalcompute="getlocalcompute"></first-component>
+        <div>Hello!!!</div>
         <div>Welcome To My Website!!!</div>
         <div>This Is My House!</div>
         <div>You must first sign in !!!</div>
@@ -73,16 +74,24 @@
         </el-form>
       </div>
     </div>
-    <div style="height: 30px"></div>
+    
     <div class="footer">
+      <div style="height: 30px"></div>
       <div class="us">
+      <div>用户协议</div>
+      <div>|</div>
+      <div>隐私政策</div>
+      <div>|</div>
       <div>关于我们</div>
+      <div>|</div>
       <div>加入我们</div>
+      <div>|</div>
       <div>联系我们</div>
       </div>
       <div class="give">copyRight@Tencent2002-2022</div>
+      <div style="height: 30px"></div>
     </div>
-    <div style="height: 30px"></div>
+    
   </div>
 </template>
 
@@ -194,12 +203,12 @@ html,body{
   height: 830px;
   div{
     padding-top: 50px;
-    padding-left: 30px;
+    padding-left: 50px;
     div{
       font-family: 'Courier New', Courier, monospace;
-      font-size: 35px;
+      font-size: 38px;
       font-weight: bold;
-      background: -webkit-linear-gradient(315deg,#5018ab7a 25%,#ff6467);
+      background: -webkit-linear-gradient(315deg,#18ab3589 25%,#ff6464);
       background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -246,8 +255,9 @@ html,body{
   color: #409EFF;
 }
 .footer{
-  color: #606266;
+  color: white;
   font-size: 14px;
+  background-color: #545c64;
   .us{
     display: flex;
     flex-wrap: wrap;
@@ -272,5 +282,8 @@ html,body{
   display: flex;
   justify-content: center;
   background-color: #545c64;
+  position: sticky;
+  top:0px;
+  z-index: 999;
 }
 </style>

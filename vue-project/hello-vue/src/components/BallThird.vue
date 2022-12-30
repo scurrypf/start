@@ -8,7 +8,7 @@
 <script>
 export default{
     name:'BallThird',
-    props:['val'],
+    props:['val','way'],
     // data:function(){
     //     return {
     //         third:0,
@@ -17,7 +17,8 @@ export default{
     methods:{
         sendMoney(){
             //this.third = this.val-1
-            this.$emit('sentTOsecond',this.val-1);
+            //this.$emit('sentTOsecond',this.val-1);
+            this.way(this.val)
         }
     },
     // watch:{
