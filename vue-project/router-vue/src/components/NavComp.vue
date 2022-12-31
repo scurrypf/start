@@ -1,0 +1,29 @@
+<template>
+    <div>
+        <el-menu mode="horizontal"  background-color="#75b1e3" text-color="#fff" active-text-color="#ffd04b">
+          <el-menu-item index="1">主页</el-menu-item>
+          <el-submenu index="2">
+          <template slot="title">我的工作台</template>
+            <el-menu-item index="2-1">la</el-menu-item>
+            <el-menu-item index="2-2">lala</el-menu-item>
+            <el-menu-item index="2-3">lalala</el-menu-item>
+            <el-submenu index="2-4">
+              <template slot="title">lalala</template>
+                <el-menu-item index="2-4-1">kokomi</el-menu-item>
+                <el-menu-item index="2-4-2">xh</el-menu-item>
+                <el-menu-item index="2-4-3">shg</el-menu-item>
+          </el-submenu>
+          </el-submenu>
+          <el-menu-item index="3">消息中心</el-menu-item>
+          <el-menu-item index="4"><a href="https://github.com/scurrypf" target="_blank">GitHub</a></el-menu-item>
+          <el-menu-item index="5"><a href="https://www.yuque.com/scurry-9rjnt/hmh9vi?# " target="_blank">语雀知识库</a></el-menu-item>
+          <el-menu-item index="6">个人中心</el-menu-item>
+          </el-menu>
+    </div> 
+</template>
+
+<script>
+export default{
+    name:'NavComp',
+}
+</script>
