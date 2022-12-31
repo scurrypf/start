@@ -2,6 +2,9 @@
     <div>
         <BallThird :val="second" @sentTOsecond="getThird" :way="way"></BallThird>
         <div>ahhhhhhhhh我是儿子{{ num }}</div>
+        <div>this is 依赖注入获得的值：{{ injectVal.text }}</div>
+        <div v-if="showUsername" v-loading="showUsername">没有值</div>
+        <div v-else>用户名：{{ user.info.name }}</div>
     </div>
 </template>
 
@@ -16,12 +19,15 @@ export default{
         val:Number,
         way:Function,
         jabuja:Boolean,
+        user:Object,
     },
+    inject:['injectVal'],
     data:function(){
         return {
             second:0,
             toFirst:0,
             num:0,
+            showUsername:true,
         }
     },
     components:{
@@ -56,6 +62,15 @@ export default{
         // jabuja:function(){
         //     this.num++;
         // }
+        user:{
+            handler:function(newValue){
+                if(newValue?.info?.name){
+                    console.log('我被执行了')
+                    this.showUsername=false;
+                }
+            },
+            deep:true,
+        }
     },
     mounted(){
         // EventBus.$on(EventType.Data_Type,()=>{

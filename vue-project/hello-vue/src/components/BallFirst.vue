@@ -2,7 +2,7 @@
     <div>
         <!-- <BallSecond :ball="firstBall" @second-ball="getSecond"></BallSecond> -->
         <!-- <BallSecond :val="toSecond" @sentTOfirst="getSecond1" :way="getSecond1"></BallSecond> -->
-        <BallSecond :jabuja="isJa" ref="erza"></BallSecond>
+        <BallSecond :jabuja="isJa" ref="erza" :user="user"></BallSecond>
         <div>ahhhhhhh我是父亲<el-button @click="JA">儿子加一</el-button></div>
     </div>
 </template>
@@ -23,7 +23,16 @@ export default{
             //firstBall:0,
             toSecond:10000,
             isJa:true,
+            inject:{
+                text:'依赖注入呀',
+            },
+            user:{},
         }
+    },
+    provide:function(){
+        return {
+           injectVal:this.inject,
+        } 
     },
     methods:{
         // getSecond(v){
@@ -46,6 +55,13 @@ export default{
             //方法三-一
             MittEvent.emit(MittEventType.Data_Type);
         }
+    },
+    mounted(){
+        setTimeout(()=>{
+            this.inject.text='依赖注入变化了?'
+            console.log(this.inject.text)
+            this.$set(this.user,'info',{name:'zpf'});
+        },3000)
     }
     
 }
