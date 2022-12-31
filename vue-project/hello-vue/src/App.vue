@@ -276,6 +276,9 @@ html,body{
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    &:hover{
+      cursor: pointer;
+    }
   }
 }
 .nav{
