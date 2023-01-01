@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-menu background-color="#545c64" text-color="#fff" active-text-color="#75b1e3">
+        <el-menu text-color="#000" active-text-color="#75b1e3">
             <el-submenu index="1">
                 <template slot="title">
                     <i class="el-icon-location"></i>

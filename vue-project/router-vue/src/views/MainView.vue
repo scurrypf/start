@@ -14,7 +14,7 @@
         <aside-comp></aside-comp>
       </div>
       <div class="left">
-        这是main
+        <el-calendar v-model="value"></el-calendar>
       </div>
     </div>
     <!-- <div class="footer">
@@ -55,6 +55,7 @@ export default {
       isFirst:true,
       msg:'Input 默认值',
       search:'',
+      value:new Date(),
     }
   },
   methods: {
