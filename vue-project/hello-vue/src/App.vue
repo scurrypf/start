@@ -38,7 +38,25 @@
       </div>
     <div class="container">
       <div class="bgimg">
-        <img src="./assets/心海.jpeg" height="830px" width="1532px" opacity="0.75">
+        <!-- <img src="./assets/心海.jpeg" height="830px" width="1532px" opacity="0.75"> -->
+        <vue-particles
+        color="#409EFF"
+        :particleOpacity="0.7"
+        :particlesNumber="150"
+        shapeType="circle"
+        :particleSize="4"
+        linesColor="#409EFF"
+        :linesWidth="1"
+        :lineLinked="true"
+        :lineOpacity="0.4"
+        :linesDistance="150"
+        :moveSpeed="2"
+        :hoverEffect="true"
+        hoverMode="grab"
+        :clickEffect="true"
+        clickMode="push"
+        class="lizi"
+      />
       </div>
       <div class="right">
         <div>
@@ -196,7 +214,9 @@ html,body{
 }
 .bgimg{
   position: absolute;
-  z-index: -1;
+  z-index: 0;
+  width: 1530px;
+  height: 830px;
 }
 .right{
   width: 60%;
@@ -230,6 +250,7 @@ html,body{
 }
 .form{
   padding: 50px 50px 0 50px;
+  background-color: #606266;
 }
 .loginToast{
   display: flex;
