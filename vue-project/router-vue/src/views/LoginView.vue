@@ -2,9 +2,6 @@
   <div>
     <div class="nav">
       <nav-comp></nav-comp>
-      <div class="nav-login">
-        <el-button>登录</el-button>
-      </div>
       <div class="search">
         <el-input placeholder="请输入搜索内容" prefix-icon="el-icon-search" size="small" v-model="search"/>
       </div>
@@ -34,8 +31,10 @@
           </el-form-item>
           <el-checkbox>记住密码</el-checkbox>
           <el-form-item>
-            <el-button @click="pdMM">登录</el-button>
-            <el-button @click="add1">注册</el-button>
+            <div class="loginButton">
+              <el-button @click="pdMM" type="primary">登录</el-button>
+            <!-- <el-button @click="add1" type="primary">注册</el-button> -->
+            </div>
           </el-form-item>
           </div>
           <div class="form-foot">
@@ -127,10 +126,11 @@ export default {
 }
 .left{
   width: 700px;
-  height: 100%;
+  height: calc(100% - 100px);
   display: flex;
   justify-content: center;
-  align-items: center;
+  margin-top: 100px;
+  // align-items: center;
 }
 .el-form{
   width: 400px;
@@ -206,5 +206,11 @@ export default {
     top: 13px;
     left: 20px;
   }
+}
+.loginButton{
+  display: flex;
+  justify-content: center;
+  position: relative;
+  right: 25px;
 }
 </style>
