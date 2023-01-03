@@ -14,7 +14,14 @@
         <aside-comp></aside-comp>
       </div>
       <div class="left">
-        <el-calendar v-model="value"></el-calendar>
+        <!-- <el-empty description="空空的，啥也没有！！！"></el-empty> -->
+        <!-- <div class="liZi">
+        <vue-particles color="#39AFFD" :particleOpacity="0.7" :particlesNumber="100" shapeType="circle" :particleSize="4" 
+          linesColor="#8DD1FE" :linesWidth="1" :lineLinked="true" :lineOpacity="0.4" :linesDistance="150" :moveSpeed="3"
+          :hoverEffect="true" hoverMode="grab" :clickEffect="true" clickMode="push" style="position:absolute">
+        </vue-particles>
+      ``</div> -->
+        <router-view></router-view>
       </div>
     </div>
     <!-- <div class="footer">

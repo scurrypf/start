@@ -21,7 +21,7 @@
       <div class="left">
         <el-form  label-width="80px">
           <div class="form">
-            <div class="loginToast">欢迎登录！</div>
+            <div class="loginToast">Welcome To Login!</div>
             <el-divider></el-divider>
           <el-form-item label="用户名：">
             <el-input v-model="user" placeholder="请输入用户名" size="meadium"/>
@@ -73,21 +73,21 @@ export default {
             type: 'success'
         }); 
         //TODO:路由跳转
-        this.$router.push({path: '/about'})
+        this.$router.push({path: '/main'})
         }else{
           this.$message.error('登录失败，账号或密码错误');
         }
       },
-    add1 () {
-        if(this.user!=="" && this.pass!==""){
-          this.$message({
-            message: `注册成功,用户名为${this.user},密码为${this.pass}`,
-            type: 'success'
-        }); 
-        }else{
-          this.$message.error('注册失败，请输入用户名和密码');
-        }
-      },
+    // add1 () {
+    //     if(this.user!=="" && this.pass!==""){
+    //       this.$message({
+    //         message: `注册成功,用户名为${this.user},密码为${this.pass}`,
+    //         type: 'success'
+    //     }); 
+    //     }else{
+    //       this.$message.error('注册失败，请输入用户名和密码');
+    //     }
+    //   },
   }
 }
 </script>
