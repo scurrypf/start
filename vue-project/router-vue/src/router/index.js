@@ -11,8 +11,9 @@ const routesArr = [
     component: LoginView
   },
   {
-    path: '/main',
+    path: '/main/:userName',
     name: 'main',
+    props: true,
     //路由懒加载
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -20,16 +21,16 @@ const routesArr = [
     component: () => import(/* webpackChunkName: "about" */ '../views/MainView.vue'),
     children:[
       {
-        path:'/main/first',
+        path:'first',
         component: ()=> import(/* webpackChunkName: "about" */ '../components/MainComp/FirstComp.vue')
       },
       {
-        path:'/main/second',
+        path:'second',
         component: ()=> import(/* webpackChunkName: "about" */ '../components/MainComp/SecondComp.vue')
       },
       {
         path:'',
-        redirect:'/main/first'
+        redirect:'first'
       }
     ]
   }

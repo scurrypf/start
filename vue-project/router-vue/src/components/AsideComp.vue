@@ -21,21 +21,23 @@
     </div>
 </template>
 <script>
-const indexMap = new Map();
-indexMap.set('1','/main/first');
-indexMap.set('2','/main/second');
 export default{
     name:'AsideComp',
     data:function(){
         return{
             navIndex:'1',
+            indexMap:new Map(),
         } 
+    },
+    mounted(){
+        this.indexMap.set('1',`/main/${this.$route.params.userName}/first`);
+        this.indexMap.set('2',`/main/${this.$route.params.userName}/second`);
     },
     methods:{
         activeRouter(index){
-            if(indexMap.has(index)){
-                if(indexMap.get(index)!==this.$router.currentRoute.fullPath)
-                this.$router.push({path:indexMap.get(index)})
+            if(this.indexMap.has(index)){
+                if(this.indexMap.get(index)!==this.$router.currentRoute.fullPath)
+                this.$router.push({path:this.indexMap.get(index)})
             }
         }
     }

@@ -3,6 +3,7 @@
     <div class="nav">
       <nav-comp></nav-comp>
       <div class="nav-login">
+        {{ userName }}
         <el-button @click="toLogin">登录</el-button>
       </div>
       <div class="search">
@@ -54,6 +55,7 @@ export default {
     NavComp,
     AsideComp,
   },
+  props:['userName'],
   data: function (){
     return {
       user:'',
@@ -69,6 +71,12 @@ export default {
       toLogin(){
         this.$router.push({path: '/'})
       }
+  },
+  mounted(){
+    this.$notify({
+          message: `欢迎登录,${this.$route.params.userName}`,
+          type: 'success'
+        });
   }
 }
 </script>

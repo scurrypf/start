@@ -73,7 +73,7 @@ export default {
             type: 'success'
         }); 
         //TODO:路由跳转
-        this.$router.push({path: '/main'})
+        this.$router.push({path: `/main/${this.user}`})
         }else{
           this.$message.error('登录失败，账号或密码错误');
         }
