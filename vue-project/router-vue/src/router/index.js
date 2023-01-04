@@ -40,4 +40,11 @@ const router = new VueRouter({
   routes:routesArr
 })
 
+
+router.beforeEach((to,from,next)=>{
+  const isZpf = sessionStorage.getItem('token');
+  if (to.path !== '/' && !isZpf) next({ path: '/' })
+  else next()
+})
+
 export default router

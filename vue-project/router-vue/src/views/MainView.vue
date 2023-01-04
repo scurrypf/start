@@ -74,7 +74,7 @@ export default {
   },
   mounted(){
     this.$notify({
-          message: `欢迎登录,${this.$route.params.userName}`,
+          message: `欢迎登录,${this.$route.query.user}`,
           type: 'success'
         });
   }

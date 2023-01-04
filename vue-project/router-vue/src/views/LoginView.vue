@@ -49,6 +49,7 @@
 
 <script>
 import NavComp from '@/components/NavComp.vue';
+import {getToken} from '@/utils/store.js'
 export default {
   //预定义属性
   name: 'LoginView',
@@ -66,14 +67,17 @@ export default {
     }
   },
   methods: {
-    pdMM () {
+    async pdMM () {
         if(this.user==='zpf' && this.pass==='123456'){
           this.$message({
             message: '恭喜您！登录成功',
             type: 'success'
-        }); 
+        });
+        //TODO:路由守卫
+        const token = await getToken();
+        sessionStorage.setItem('token',token); 
         //TODO:路由跳转
-        this.$router.push({path: `/main/${this.user}`})
+        this.$router.push({path: `/main/${this.user}`,query:{user:this.user}})
         }else{
           this.$message.error('登录失败，账号或密码错误');
         }
