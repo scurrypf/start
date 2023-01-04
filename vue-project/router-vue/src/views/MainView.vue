@@ -11,14 +11,13 @@
             <img class="headImg" src="../assets/头像.jpg" />
           </div>
           <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item>我的主页</el-dropdown-item>
-          <el-dropdown-item>我的足迹</el-dropdown-item>
-          <el-dropdown-item>个人信息</el-dropdown-item>
-          <el-dropdown-item>历史记录</el-dropdown-item>
-          <el-dropdown-item divided><span @click="toLogin">退出登录</span></el-dropdown-item>
-  </el-dropdown-menu>
-</el-dropdown>
-
+            <el-dropdown-item>我的主页</el-dropdown-item>
+            <el-dropdown-item>我的足迹</el-dropdown-item>
+            <el-dropdown-item>个人信息</el-dropdown-item>
+            <el-dropdown-item>历史记录</el-dropdown-item>
+            <el-dropdown-item divided><span @click="toLogin">退出登录</span></el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
       </div>
       <div class="logo">
         <img src="https://www.tencent.com/img/index/menu_logo_hover.png" height="22px"/>        
@@ -30,13 +29,6 @@
         <aside-comp></aside-comp>
       </div>
       <div class="left">
-        <!-- <el-empty description="空空的，啥也没有！！！"></el-empty> -->
-        <!-- <div class="liZi">
-        <vue-particles color="#39AFFD" :particleOpacity="0.7" :particlesNumber="100" shapeType="circle" :particleSize="4" 
-          linesColor="#8DD1FE" :linesWidth="1" :lineLinked="true" :lineOpacity="0.4" :linesDistance="150" :moveSpeed="3"
-          :hoverEffect="true" hoverMode="grab" :clickEffect="true" clickMode="push" style="position:absolute">
-        </vue-particles>
-      ``</div> -->
         <router-view></router-view>
       </div>
     </div>
@@ -87,6 +79,14 @@ export default {
         this.$router.push({path: '/'})
       }
   },
+  beforeRouteLeave (to, from, next) {
+  const answer = window.confirm('Do you really want to leave this page ? ')
+    if (answer) {
+      next()
+    } else {
+      next(false)
+    }
+},
   // mounted(){
   //   this.$notify({
   //         message: `欢迎登录,${this.$route.query.user}`,

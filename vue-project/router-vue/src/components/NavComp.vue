@@ -1,7 +1,7 @@
 <template>
     <div>
-        <el-menu mode="horizontal"  background-color="#75b1e3" text-color="#fff" active-text-color="#ffd04b" @select="changeComp">
-          <el-menu-item index="1">主页</el-menu-item>
+        <el-menu mode="horizontal"  default-active="1" background-color="#75b1e3" text-color="#fff" active-text-color="#ffd04b" @select="changeComp">
+          <el-menu-item index="1">首页</el-menu-item>
           <el-submenu index="2">
           <template slot="title">我的工作台</template>
             <el-menu-item index="2-1">la</el-menu-item>

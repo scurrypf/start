@@ -2,8 +2,8 @@
   <div>
     <div class="nav">
       <nav-comp></nav-comp>
-      <div class="search">
-
+      <div class="logo">
+        <img src="https://www.tencent.com/img/index/menu_logo_hover.png" height="22px"/>        
       </div>
       </div>
     <div class="container">
@@ -68,7 +68,8 @@ export default {
   },
   methods: {
     async pdMM () {
-        if(this.user==='zpf' && this.pass==='123456'){
+        // if(this.user==='zpf' && this.pass==='123456'){
+          if(this.user && this.pass){
           this.$message({
             message: '恭喜您！登录成功',
             type: 'success'
@@ -205,9 +206,9 @@ export default {
     top: 10px;
     right: 20px;
   }
-  .search{
+  .logo{
     position: absolute;
-    top: 13px;
+    top: 20px;
     left: 20px;
   }
 }
