@@ -3,11 +3,26 @@
     <div class="nav">
       <nav-comp></nav-comp>
       <div class="nav-login">
-        {{ userName }}
-        <el-button @click="toLogin">登录</el-button>
+        <div class="nav-user">
+          Hello,<a>{{ userName }}</a>!
+        </div>
+        <el-dropdown trigger="click">
+          <div>
+            <img class="headImg" src="../assets/头像.jpg" />
+          </div>
+          <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item>我的主页</el-dropdown-item>
+          <el-dropdown-item>我的足迹</el-dropdown-item>
+          <el-dropdown-item>个人信息</el-dropdown-item>
+          <el-dropdown-item>历史记录</el-dropdown-item>
+          <el-dropdown-item divided><span @click="toLogin">退出登录</span></el-dropdown-item>
+  </el-dropdown-menu>
+</el-dropdown>
+
       </div>
-      <div class="search">
-        <el-input placeholder="请输入搜索内容" prefix-icon="el-icon-search" size="small" v-model="search"/>
+      <div class="logo">
+        <img src="https://www.tencent.com/img/index/menu_logo_hover.png" height="22px"/>        
+        <!-- <el-input placeholder="请输入搜索内容" prefix-icon="el-icon-search" size="small" v-model="search"/> -->
       </div>
       </div>
     <div class="sort">
@@ -72,12 +87,12 @@ export default {
         this.$router.push({path: '/'})
       }
   },
-  mounted(){
-    this.$notify({
-          message: `欢迎登录,${this.$route.query.user}`,
-          type: 'success'
-        });
-  }
+  // mounted(){
+  //   this.$notify({
+  //         message: `欢迎登录,${this.$route.query.user}`,
+  //         type: 'success'
+  //       });
+  // }
 }
 </script>
 
@@ -100,12 +115,26 @@ export default {
   position: relative;
   .nav-login{
     position: absolute;
-    top: 10px;
+    top: 5px;
     right: 20px;
+    display: flex;
+    .nav-user{
+      margin-right: 10px;
+      display: flex;
+      align-items: center;
+      color: black;
+      font-family: 'Courier New', Courier, monospace;
+      font-weight: 400;
+    }
+    .headImg{
+      height: 48px;
+      width: 48px;
+      border-radius: 50%;
+    }
   }
-  .search{
+  .logo{
     position: absolute;
-    top: 13px;
+    top: 20px;
     left: 20px;
   }
 }
@@ -113,6 +142,7 @@ export default {
   width: 300px;
   height: 100%;
   overflow-y: auto;
+  background-color: #f5f6f7;
 }
 .left{
   width: calc(100% - 300px);

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-menu mode="horizontal"  background-color="#75b1e3" text-color="#fff" active-text-color="#ffd04b">
+        <el-menu mode="horizontal"  background-color="#75b1e3" text-color="#fff" active-text-color="#ffd04b" @select="changeComp">
           <el-menu-item index="1">主页</el-menu-item>
           <el-submenu index="2">
           <template slot="title">我的工作台</template>
@@ -23,7 +23,19 @@
 </template>
 
 <script>
+const map = new Map();
 export default{
     name:'NavComp',
+    mounted(){
+        //map.set('1',`main/${this.$route.params.userName}/default`)
+        map.set('1',`default`)
+    },
+    methods:{
+        changeComp(index){
+            if(map.has(index) && map.get(index)!==this.$router.currentRoute.fullPath){
+                this.$router.push({path:map.get(index)})
+            }
+        }
+    }
 }
 </script>

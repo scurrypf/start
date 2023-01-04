@@ -1,12 +1,12 @@
 <template>
     <div>
-        <el-menu text-color="#000" :default-active="navIndex" active-text-color="#75b1e3" @select="activeRouter">
+        <el-menu background-color="#f5f6f7" text-color="#000" :default-active="navIndex" active-text-color="#75b1e3" @select="activeRouter">
             <el-menu-item index="1">
-                <i class="el-icon-menu"></i>
+                <i class="el-icon-s-custom"></i>
                 <span slot="title">个人信息</span>
             </el-menu-item>
             <el-menu-item index="2">
-                <i class="el-icon-menu"></i>
+                <i class="el-icon-date"></i>
                 <span slot="title">日历</span>
             </el-menu-item>
             <el-menu-item index="3">
@@ -25,7 +25,7 @@ export default{
     name:'AsideComp',
     data:function(){
         return{
-            navIndex:'1',
+            navIndex:'',
             indexMap:new Map(),
         } 
     },

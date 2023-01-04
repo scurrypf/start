@@ -1,6 +1,9 @@
 .DS_Store
 node_modules
 /dist
+2.jpg
+curry.jpeg
+
 
 
 # local env files

@@ -5,7 +5,7 @@
             <el-descriptions-item label="手机号">13721283440</el-descriptions-item>
             <el-descriptions-item label="居住地" :span="2">America Califonia Sanfrancisico</el-descriptions-item>
             <el-descriptions-item label="备注">
-                <el-tag size="small">学校</el-tag>
+                <el-tag size="small">家</el-tag>
             </el-descriptions-item>
             <el-descriptions-item label="联系地址">America Califonia Sanfrancisico</el-descriptions-item>
         </el-descriptions>

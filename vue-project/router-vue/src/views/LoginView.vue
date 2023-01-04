@@ -3,7 +3,7 @@
     <div class="nav">
       <nav-comp></nav-comp>
       <div class="search">
-        <el-input placeholder="请输入搜索内容" prefix-icon="el-icon-search" size="small" v-model="search"/>
+
       </div>
       </div>
     <div class="container">

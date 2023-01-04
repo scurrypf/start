@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import LoginView from '../views/LoginView.vue'
+import DefaultComp from '../components/MainComp/DefaultComp.vue'
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,10 @@ const routesArr = [
     component: () => import(/* webpackChunkName: "about" */ '../views/MainView.vue'),
     children:[
       {
+        path:'default',
+        component:DefaultComp,
+      },
+      {
         path:'first',
         component: ()=> import(/* webpackChunkName: "about" */ '../components/MainComp/FirstComp.vue')
       },
@@ -30,7 +35,7 @@ const routesArr = [
       },
       {
         path:'',
-        redirect:'first'
+        redirect:'default'
       }
     ]
   }
