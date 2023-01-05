@@ -1,5 +1,6 @@
 <template>
-    <div class="default" ref="default">
+    <!-- vue框架的事件监听 -->
+    <div class="default" ref="default" @scroll="setButton">
         <div class="bread" ref="top">
         <el-breadcrumb separator-class="el-icon-arrow-right">
             <el-breadcrumb-item :to="{ path: `/main/${ this.$route.params.userName }` }">首页</el-breadcrumb-item>
@@ -27,9 +28,13 @@ export default{
             hasButton:false,
         }
     },
-    mounted(){
-        this.$refs.default.addEventListener('scroll',this.setButton);
-    },
+    //原生的事件监听,监听之后要在destroyed中销毁
+    // mounted(){
+    //     this.$refs.default.addEventListener('scroll',this.setButton);
+    // },
+    // destroyed(){
+    //     this.$refs.default.removeEventListener('scroll',this.setButton);
+    // },
     methods:{
         Totop(){
             this.$refs.top.scrollIntoView(true, {
@@ -49,7 +54,7 @@ export default{
 
 <style lang="scss" scoped>
 .bread{
-    margin-top: 20px;
+    padding-top: 20px;
 }
 .toTop{
     position: fixed;

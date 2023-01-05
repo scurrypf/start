@@ -27,7 +27,7 @@ export default{
 
 <style lang="scss" scoped>
 .bread{
-    margin-top: 20px;
+    padding-top: 20px;
 }
 
 </style>

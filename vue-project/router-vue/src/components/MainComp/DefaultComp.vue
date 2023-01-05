@@ -4,7 +4,8 @@
             linesColor="#39AFFD" :linesWidth="1" :lineLinked="true" :lineOpacity="0.4" :linesDistance="150"
             :moveSpeed="3" :hoverEffect="true" hoverMode="grab" :clickEffect="true" clickMode="push" class="lizi" /> -->
         <div>
-            <img class="bgImag" src="https://images.pexels.com/photos/311039/pexels-photo-311039.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+            <img class="bgImag" src="../../assets/心海.jpeg" />
+            <!-- https://images.pexels.com/photos/311039/pexels-photo-311039.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1 -->
         </div>
             <div class="welcome">
             <div>
