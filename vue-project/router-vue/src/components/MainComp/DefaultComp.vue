@@ -49,7 +49,10 @@ export default{
     font-family: 'Courier New', Courier, monospace;
     font-size: 2.5em;
     font-weight: bolder;
-    color: #409EFF;
+    background: -webkit-linear-gradient(315deg,#ff6464,#183fab89);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     display: flex;
     justify-content: center;
     align-items: center;

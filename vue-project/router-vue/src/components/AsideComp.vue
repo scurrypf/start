@@ -1,6 +1,10 @@
 <template>
     <div>
-        <el-menu background-color="#f5f6f7" text-color="#000" :default-active="navIndex" active-text-color="#75b1e3" @select="activeRouter">
+    <div class="menu">
+        <!-- #f5f6f7  #ffd04b -->
+        <!-- <div style="height: 1000px;"></div> -->
+        <el-menu background-color="#c6dff3" text-color="#fff" :default-active="navIndex" 
+                active-text-color="#409EFF" @select="activeRouter">
             <el-menu-item index="1">
                 <i class="el-icon-s-custom"></i>
                 <span slot="title">个人信息</span>
@@ -10,15 +14,21 @@
                 <span slot="title">日历</span>
             </el-menu-item>
             <el-menu-item index="3">
-                <i class="el-icon-document"></i>
+                <i class="el-icon-goods"></i>
                 <span slot="title">Respositities</span>
             </el-menu-item>
             <el-menu-item index="4">
-                <i class="el-icon-setting"></i>
-                <span slot="title">导航四</span>
+                <i class="el-icon-s-data"></i>
+                <span slot="title">Tables</span>
+            </el-menu-item>
+            <el-menu-item index="5">
+                <i class="el-icon-document"></i>
+                <span slot="title">Form</span>
             </el-menu-item>
         </el-menu>
     </div>
+    <div class="aside-foot">copyRight@Tencent2002-2023</div>
+</div>
 </template>
 <script>
 export default{
@@ -43,3 +53,20 @@ export default{
     }
 }
 </script>
+<style lang="scss" scoped>
+.aside-foot{
+    height: 61px;
+    width: 300px;
+    border-top:1px solid #f5f6f7;
+    position: absolute;
+    bottom: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    color: #fff;
+}
+.menu{
+    margin-bottom: 61px;
+}
+</style>

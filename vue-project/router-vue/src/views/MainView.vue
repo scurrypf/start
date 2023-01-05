@@ -142,7 +142,8 @@ export default {
   width: 300px;
   height: 100%;
   overflow-y: auto;
-  background-color: #f5f6f7;
+  background-color: #c6dff3;
+  //background-color: #f5f6f7;
 }
 .left{
   width: calc(100% - 300px);
