@@ -86,7 +86,7 @@ export default {
     } else {
       next(false)
     }
-},
+  },
   // mounted(){
   //   this.$notify({
   //         message: `欢迎登录,${this.$route.query.user}`,
