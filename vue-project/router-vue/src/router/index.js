@@ -2,6 +2,10 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import LoginView from '../views/LoginView.vue'
 import DefaultComp from '../components/MainComp/DefaultComp.vue'
+import ThirdComp from '../components/MainComp/ThirdComp.vue'
+import FourComp from '../components/MainComp/FourComp.vue'
+import FiveComp from '../components/MainComp/FiveComp.vue'
+
 
 Vue.use(VueRouter)
 
@@ -32,6 +36,18 @@ const routesArr = [
       {
         path:'second',
         component: ()=> import(/* webpackChunkName: "about" */ '../components/MainComp/SecondComp.vue')
+      },
+      {
+        path:'third',
+        component:ThirdComp,
+      },
+      {
+        path:'four',
+        component:FourComp,
+      },
+      {
+        path:'five',
+        component:FiveComp,
       },
       {
         path:'',

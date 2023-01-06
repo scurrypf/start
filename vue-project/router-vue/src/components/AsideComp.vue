@@ -42,6 +42,9 @@ export default{
     mounted(){
         this.indexMap.set('1',`/main/${this.$route.params.userName}/first`);
         this.indexMap.set('2',`/main/${this.$route.params.userName}/second`);
+        this.indexMap.set('3',`/main/${this.$route.params.userName}/third`);
+        this.indexMap.set('4',`/main/${this.$route.params.userName}/four`);
+        this.indexMap.set('5',`/main/${this.$route.params.userName}/five`);
     },
     methods:{
         activeRouter(index){
