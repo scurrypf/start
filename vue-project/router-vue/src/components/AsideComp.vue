@@ -9,6 +9,10 @@
                 <i class="el-icon-s-custom"></i>
                 <span slot="title">个人信息</span>
             </el-menu-item>
+            <el-menu-item index="6">
+                <i class="el-icon-sunny"></i>
+                <span slot="title">天气信息</span>
+            </el-menu-item>
             <el-menu-item index="2">
                 <i class="el-icon-date"></i>
                 <span slot="title">日历</span>
@@ -45,6 +49,7 @@ export default{
         this.indexMap.set('3',`/main/${this.$route.params.userName}/third`);
         this.indexMap.set('4',`/main/${this.$route.params.userName}/four`);
         this.indexMap.set('5',`/main/${this.$route.params.userName}/five`);
+        this.indexMap.set('6',`/main/${this.$route.params.userName}/six`);
     },
     methods:{
         activeRouter(index){

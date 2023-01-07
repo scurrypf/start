@@ -5,7 +5,7 @@ import DefaultComp from '../components/MainComp/DefaultComp.vue'
 import ThirdComp from '../components/MainComp/ThirdComp.vue'
 import FourComp from '../components/MainComp/FourComp.vue'
 import FiveComp from '../components/MainComp/FiveComp.vue'
-
+import SixComp from '../components/MainComp/SixComp.vue'
 
 Vue.use(VueRouter)
 
@@ -48,6 +48,10 @@ const routesArr = [
       {
         path:'five',
         component:FiveComp,
+      },
+      {
+        path:'six',
+        component:SixComp,
       },
       {
         path:'',
