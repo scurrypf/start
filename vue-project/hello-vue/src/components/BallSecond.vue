@@ -1,10 +1,17 @@
 <template>
     <div>
-        <BallThird :val="second" @sentTOsecond="getThird" :way="way"></BallThird>
+        <!-- <BallThird :val="second" @sentTOsecond="getThird" :way="way"></BallThird>
         <div>ahhhhhhhhh我是儿子{{ num }}</div>
         <div>this is 依赖注入获得的值：{{ injectVal.text }}</div>
         <div v-if="showUsername" v-loading="showUsername">没有值</div>
-        <div v-else>用户名：{{ user.info.name }}</div>
+        <div v-else>用户名：{{ user.info.name }}</div> -->
+        <div :style="{color:color}">{{ msg }}</div>
+    <!-- <div>{{ msg }}</div> -->
+        <el-divider></el-divider>
+        <!-- 匿名插槽 -->
+        <slot></slot>
+        <!-- 具名插槽 -->
+        <slot name="slottt"></slot>
     </div>
 </template>
 
@@ -20,6 +27,8 @@ export default{
         way:Function,
         jabuja:Boolean,
         user:Object,
+        msg:String,
+        color:String,
     },
     inject:['injectVal'],
     data:function(){

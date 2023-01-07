@@ -13,6 +13,6 @@ Vue.use(ElementUI);
 Vue.config.productionTip = false
 
 new Vue({
-  //render: h => h(BallFirst),
-  render: h => h(App)
+  render: h => h(BallFirst),
+  //render: h => h(App)
 }).$mount('#app')

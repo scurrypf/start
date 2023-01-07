@@ -2,8 +2,21 @@
     <div>
         <!-- <BallSecond :ball="firstBall" @second-ball="getSecond"></BallSecond> -->
         <!-- <BallSecond :val="toSecond" @sentTOfirst="getSecond1" :way="getSecond1"></BallSecond> -->
-        <BallSecond :jabuja="isJa" ref="erza" :user="user"></BallSecond>
-        <div>ahhhhhhh我是父亲<el-button @click="JA">儿子加一</el-button></div>
+        <!-- <BallSecond :jabuja="isJa" ref="erza" :user="user"></BallSecond>
+        <div>ahhhhhhh我是父亲<el-button @click="JA">儿子加一</el-button></div> -->
+        <ball-second :msg="msg" color="green"></ball-second>
+        <ball-second msg="这是父组件传的第二个值" color="red"></ball-second>
+        <BallSecond>
+            <h1>这是匿名插槽</h1>
+        </BallSecond>
+        <BallSecond>
+            <template v-slot:slottt>
+                <div style="color:aqua">
+                    <h1>这是具名插槽</h1>
+                </div>
+                
+            </template>
+        </BallSecond>
     </div>
 </template>
 
@@ -27,6 +40,7 @@ export default{
                 text:'依赖注入呀',
             },
             user:{},
+            msg:'这是父组件传的第一个值',
         }
     },
     provide:function(){
