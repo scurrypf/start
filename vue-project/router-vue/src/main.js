@@ -5,6 +5,8 @@ import router from './router'
 import ElementUI from 'element-ui';
 // 引入elementui css
 import 'element-ui/lib/theme-chalk/index.css';
+//引入i18n
+import i18n from './i18n'
 // 安装至vue应用中
 Vue.use(ElementUI);
 //vue粒子背景
@@ -14,6 +16,7 @@ Vue.use(VueParticles)
 Vue.config.productionTip = false
 
 new Vue({
+  i18n,
   router,
   render: h => h(App)
 }).$mount('#app')
