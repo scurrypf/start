@@ -11,11 +11,11 @@
             <img class="headImg" src="../assets/头像.jpg" />
           </div>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>我的主页</el-dropdown-item>
-            <el-dropdown-item>我的足迹</el-dropdown-item>
-            <el-dropdown-item>个人信息</el-dropdown-item>
-            <el-dropdown-item>历史记录</el-dropdown-item>
-            <el-dropdown-item divided><span @click="toLogin">退出登录</span></el-dropdown-item>
+            <el-dropdown-item>{{ $t('msg.myMain') }}</el-dropdown-item>
+            <el-dropdown-item>{{ $t('msg.myFoot') }}</el-dropdown-item>
+            <el-dropdown-item>{{ $t('msg.presonInfo') }}</el-dropdown-item>
+            <el-dropdown-item>{{ $t('msg.history') }}</el-dropdown-item>
+            <el-dropdown-item divided><span @click="toLogin">{{ $t('msg.logout') }}</span></el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </div>

@@ -12,21 +12,21 @@
                 <h2><span>¶</span>Weather Inquire 天气查询</h2>
             </div>
             <div class="top-sub">
-                用于进行每日的天气查询
+                {{$t('msg.trans')}}
             </div>
         </div>
         <div class="wea-body">
             <div class="inputSize">
-                    <el-input placeholder="请输入查询城市" size="small" v-model="city"></el-input>
+                    <el-input :placeholder="$t('msg.pleaseInquire')" size="small" v-model="city"></el-input>
                     <div class="buttonLeft">
-                        <el-button size="small" @click="getWeather">查询</el-button>
+                        <el-button size="small" @click="getWeather">{{$t('msg.inquire')}}</el-button>
                     </div>
             </div>
             <!-- style="width: 800px;" -->
             <el-table :data="tableData" stripe>
-                <el-table-column prop="cityList" label="条目"></el-table-column>
-                <el-table-column prop="attribute" label="城市属性"></el-table-column>
-                <el-table-column prop="value" label="value">
+                <el-table-column prop="cityList" :label="$t('msg.list')"></el-table-column>
+                <el-table-column prop="attribute" :label="$t('msg.cityAttri')"></el-table-column>
+                <el-table-column prop="value" :label="$t('msg.val')">
                     <template v-slot:default="scope">
                             <img :src="getImg(scope.row.value)" v-if="scope.row.attribute === 'img'"/>
                             <div v-else>{{ scope.row.value }}</div>

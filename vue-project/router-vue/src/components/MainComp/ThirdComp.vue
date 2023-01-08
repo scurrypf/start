@@ -18,20 +18,28 @@
             </div> -->
             <div class="res-nav">
                 <div class="inputSize">
-                    <el-input placeholder="Find a resposity ..." size="small"></el-input>
+                    <el-input :placeholder="$t('msg.pleaseRes')" size="small"></el-input>
                 </div>
+                <div class="buttonLeft">
+                        <el-button size="small" @click="getWeather">{{$t('msg.inquire')}}</el-button>
+                    </div>
                 <div class="nav-button">
-                    <el-button size="small">Type</el-button>
-                    <el-button size="small">Language</el-button>
-                    <el-button size="small">sort</el-button> 
-                    <el-button size="small" type="success">new</el-button> 
+                    <el-button size="small">{{$t('msg.type')}}</el-button>
+                    <el-button size="small">{{$t('msg.lang')}}</el-button>
+                    <el-button size="small">{{$t('msg.sort')}}</el-button> 
+                    <el-button size="small" type="success">{{$t('msg.new')}}</el-button> 
                 </div> 
             </div>
             <!-- <el-divider></el-divider> -->
             <div class="main">
                 <div class="main-first">
                     <div>
-
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-guanjunjiangbei"></use>
+                        </svg>
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-dagu"></use>
+                        </svg>
                     </div>
                 </div>
                 <div class="main-first"></div>
@@ -72,4 +80,7 @@ export default{
 //     justify-content: center;
 //     align-items: center;
 // }
+.buttonLeft{
+    margin-left: 5px;
+}
 </style>

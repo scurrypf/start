@@ -9,7 +9,8 @@
         </div>
         <el-divider></el-divider>
         <!-- <div style="height:10000px"></div> -->
-        <el-date-picker v-model="value1" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期">
+        <el-date-picker v-model="value1" type="daterange" range-separator="至" :start-placeholder="$t('msg.startDate')" 
+                        :end-placeholder="$t('msg.endDate')">
         </el-date-picker>
         <el-calendar v-model="value"></el-calendar>
         <div class="toTop" @click="Totop" v-show="hasButton">
