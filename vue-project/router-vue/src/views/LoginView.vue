@@ -21,25 +21,28 @@
       <div class="left">
         <el-form  label-width="80px">
           <div class="form">
-            <div class="loginToast">Welcome To Login!</div>
+            <div class="loginToast">{{ $t('msg.welcome') }}</div>
             <el-divider></el-divider>
-          <el-form-item label="用户名：">
-            <el-input v-model="user" placeholder="请输入用户名" size="meadium"/>
+          <!-- <el-form-item label="用户名："> -->
+            <el-form-item :label="$t('msg.username')">
+            <el-input v-model="user" :placeholder="$t('msg.pleaseName')" size="meadium"/>
           </el-form-item>
-          <el-form-item label="密码：">
-            <el-input v-model="pass" type="password" placeholder="请输入密码" size="meadium"/>
+          <!-- <el-form-item label="密码："> -->
+            <el-form-item :label="$t('msg.passwd')">
+            <el-input v-model="pass" type="password" :placeholder="$t('msg.pleasePass')" size="meadium"/>
           </el-form-item>
-          <el-checkbox>记住密码</el-checkbox>
+          <el-checkbox>{{ $t('msg.remeber') }}</el-checkbox>
           <el-form-item>
             <div class="loginButton">
-              <el-button @click="pdMM" type="primary">登录</el-button>
+              <!-- <el-button @click="pdMM" type="primary">登录</el-button> -->
+              <el-button @click="pdMM" type="primary">{{$t('msg.login')}}</el-button>
             <!-- <el-button @click="add1" type="primary">注册</el-button> -->
             </div>
           </el-form-item>
           </div>
           <div class="form-foot">
-          <span>忘记密码</span>
-          <span>退出登录</span>
+          <span>{{ $t('msg.forget') }}</span>
+          <span>{{ $t('msg.logout') }}</span>
           </div>
         </el-form>
       </div>

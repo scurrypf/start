@@ -3,8 +3,8 @@
     <div class="default" ref="default" @scroll="setButton">
         <div class="bread" ref="top">
         <el-breadcrumb separator-class="el-icon-arrow-right">
-            <el-breadcrumb-item :to="{ path: `/main/${ this.$route.params.userName }` }">首页</el-breadcrumb-item>
-            <el-breadcrumb-item>日历</el-breadcrumb-item>
+            <el-breadcrumb-item :to="{ path: `/main/${ this.$route.params.userName }` }">{{ $t('msg.home') }}</el-breadcrumb-item>
+            <el-breadcrumb-item>{{ $t('msg.calendar') }}</el-breadcrumb-item>
         </el-breadcrumb>
         </div>
         <el-divider></el-divider>

@@ -7,28 +7,28 @@
                 active-text-color="#409EFF" @select="activeRouter">
             <el-menu-item index="1">
                 <i class="el-icon-s-custom"></i>
-                <span slot="title">个人信息</span>
+                <span slot="title">{{ $t('msg.presonInfo') }}</span>
             </el-menu-item>
             <el-menu-item index="6">
                 <i class="el-icon-sunny"></i>
-                <span slot="title">天气信息</span>
+                <span slot="title">{{ $t('msg.weatherInfo') }}</span>
             </el-menu-item>
             <el-menu-item index="2">
                 <i class="el-icon-date"></i>
-                <span slot="title">日历</span>
+                <span slot="title">{{ $t('msg.calendar') }}</span>
             </el-menu-item>
             <el-menu-item index="3">
                 <i class="el-icon-goods"></i>
-                <span slot="title">Respositities</span>
+                <span slot="title">{{ $t('msg.respon') }}</span>
             </el-menu-item>
             <el-menu-item index="4">
                 <i class="el-icon-s-data"></i>
-                <span slot="title">Tables</span>
+                <span slot="title">{{ $t('msg.table') }}</span>
             </el-menu-item>
-            <el-menu-item index="5">
+            <!-- <el-menu-item index="5">
                 <i class="el-icon-document"></i>
                 <span slot="title">Form</span>
-            </el-menu-item>
+            </el-menu-item> -->
         </el-menu>
     </div>
     <div class="aside-foot">copyRight@Tencent2002-2023</div>
@@ -48,7 +48,7 @@ export default{
         this.indexMap.set('2',`/main/${this.$route.params.userName}/second`);
         this.indexMap.set('3',`/main/${this.$route.params.userName}/third`);
         this.indexMap.set('4',`/main/${this.$route.params.userName}/four`);
-        this.indexMap.set('5',`/main/${this.$route.params.userName}/five`);
+        // this.indexMap.set('5',`/main/${this.$route.params.userName}/five`);
         this.indexMap.set('6',`/main/${this.$route.params.userName}/six`);
     },
     methods:{

@@ -2,8 +2,8 @@
     <div>
         <div class="bread" ref="top">
         <el-breadcrumb separator-class="el-icon-arrow-right">
-            <el-breadcrumb-item :to="{ path: `/main/${ this.$route.params.userName }` }">首页</el-breadcrumb-item>
-            <el-breadcrumb-item>天气信息</el-breadcrumb-item>
+            <el-breadcrumb-item :to="{ path: `/main/${ this.$route.params.userName }` }">{{ $t('msg.home') }}</el-breadcrumb-item>
+            <el-breadcrumb-item>{{ $t('msg.weatherInfo') }}</el-breadcrumb-item>
         </el-breadcrumb>
         </div>
         <el-divider></el-divider>
@@ -28,7 +28,7 @@
                 <el-table-column prop="attribute" label="城市属性"></el-table-column>
                 <el-table-column prop="value" label="value">
                     <template v-slot:default="scope">
-                            <img :src="src" v-if="scope.row.attribute === 'img'"/>
+                            <img :src="getImg(scope.row.value)" v-if="scope.row.attribute === 'img'"/>
                             <div v-else>{{ scope.row.value }}</div>
                     </template>
                 </el-table-column>
@@ -55,7 +55,7 @@ const keyMap = {
     winddirect:'风直通',
     windpower:'风力发电',
     updatetime:'更新时间',
-    img:'图片'
+    img:'天气图片'
 }
 export default{
     name: "SixComp",
@@ -74,14 +74,18 @@ export default{
             const removeKey = ["index", "aqi", "daily", "hourly", "week"];
             const { data } = await http.get("/weather/query", { params: { city: this.city } });
             console.log(data.result);
+            let Data = [];
             Object.entries(data.result).forEach(([key, value]) => {
                 if (!removeKey.includes(key)) {
-                    this.tableData.push({ attribute: key, value,cityList:keyMap[key]});
-                }
-                if(key === 'img'){
-                    console.log(this.src.concat("../../assets/weathercn02/",value,".png").toString())
+                    Data.push({ attribute: key, value,cityList:keyMap[key]});
                 }
             });
+            this.tableData=Data;
+        },
+        getImg(v){
+            //如果以变量的形式传递路径，且路径在src/assets下面，取路径时将要用require包裹
+            parseInt(v);
+            return require(`@/assets/weathercn02/${v}.png`);
         }
     },
 }

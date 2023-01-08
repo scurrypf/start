@@ -2,8 +2,8 @@
     <div>
         <div class="bread">
         <el-breadcrumb separator-class="el-icon-arrow-right">
-            <el-breadcrumb-item :to="{ path: `/main/${ this.$route.params.userName }` }">首页</el-breadcrumb-item>
-            <el-breadcrumb-item>个人信息</el-breadcrumb-item>
+            <el-breadcrumb-item :to="{ path: `/main/${ this.$route.params.userName }` }">{{ $t('msg.home') }}</el-breadcrumb-item>
+            <el-breadcrumb-item>{{ $t('msg.presonInfo') }}</el-breadcrumb-item>
         </el-breadcrumb>
         </div>
         <el-divider></el-divider>
