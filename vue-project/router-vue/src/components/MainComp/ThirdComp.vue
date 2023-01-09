@@ -21,7 +21,7 @@
                     <el-input :placeholder="$t('msg.pleaseRes')" size="small"></el-input>
                 </div>
                 <div class="buttonLeft">
-                        <el-button size="small" @click="getWeather">{{$t('msg.inquire')}}</el-button>
+                        <el-button size="small">{{$t('msg.inquire')}}</el-button>
                     </div>
                 <div class="nav-button">
                     <el-button size="small">{{$t('msg.type')}}</el-button>
@@ -42,16 +42,41 @@
                         </svg>
                     </div>
                 </div>
-                <div class="main-first"></div>
+                <div class="main-first">
+                    {{ TokenData }}
+                    <div>
+                        <el-input :placeholder="$t('msg.pleaseInquire')" size="small" v-model="changeMsg"></el-input>
+                    <div>
+                        <el-button size="small" @click="getChange">{{$t('msg.inquire')}}</el-button>
+                    </div>
+                    </div>
+                    vuex测试{{ $store.state.msg }}
+                    <img v-for="(src,index) in imgUrls" :src="src" :key="index"/>
+                </div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import { state } from '@/store/index.js'
+import { mapGetters } from 'vuex'
 export default{
     name:'ThirdComp',
-
+    data:function(){
+        return {
+            TokenData:state,
+            changeMsg:'',
+        }
+    },
+    computed:{
+        ...mapGetters(['imgUrls'])
+    },
+    methods:{
+        getChange(){
+            this.$store.commit('changeMsg',{message:this.changeMsg})
+        }
+    }
 }
 </script>
 

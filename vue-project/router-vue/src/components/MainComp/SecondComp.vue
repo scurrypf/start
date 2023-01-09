@@ -36,6 +36,11 @@ export default{
     // destroyed(){
     //     this.$refs.default.removeEventListener('scroll',this.setButton);
     // },
+    computed:{
+        imgArr:function(){
+            return this.$store
+        }
+    },
     methods:{
         Totop(){
             this.$refs.top.scrollIntoView(true, {
