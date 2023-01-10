@@ -44,13 +44,22 @@
                 </div>
                 <div class="main-first">
                     {{ TokenData }}
-                    <div>
+                    <!-- <div>
                         <el-input :placeholder="$t('msg.pleaseInquire')" size="small" v-model="changeMsg"></el-input>
                     <div>
                         <el-button size="small" @click="getChange">{{$t('msg.inquire')}}</el-button>
                     </div>
                     </div>
                     vuex测试{{ $store.state.msg }}
+                    <img v-for="(src,index) in imgUrls" :src="src" :key="index"/>
+                </div> -->
+                <div>
+                    <el-input :placeholder="$t('msg.pleaseInquire')" size="small" v-model="changeMsgs"></el-input>
+                    <div>
+                        <el-button size="small" @click="getChange">{{$t('msg.inquire')}}</el-button>
+                    </div>
+                    </div>
+                    vuex测试{{ msgs }}
                     <img v-for="(src,index) in imgUrls" :src="src" :key="index"/>
                 </div>
             </div>
@@ -60,22 +69,34 @@
 
 <script>
 import { state } from '@/store/index.js'
-import { mapGetters } from 'vuex'
+import { mapGetters,mapState,mapMutations,mapActions } from 'vuex'
 export default{
     name:'ThirdComp',
     data:function(){
         return {
             TokenData:state,
-            changeMsg:'',
+            changeMsgs:'',
         }
     },
     computed:{
-        ...mapGetters(['imgUrls'])
+        //简便写法。将其解构出来，需要import导入时解构
+        ...mapState(['msgs']),
+        ...mapGetters(['imgUrls']),
+        //通过store使用
+        //imgUrls:function(){
+        //     return this.$store.getters.imgUrls;
+        // }
     },
     methods:{
+        ...mapMutations(['changeMsg']),
+        ...mapActions(['asyncUpdate']),
         getChange(){
-            this.$store.commit('changeMsg',{message:this.changeMsg})
+            //this.changeMsg({message: this.changeMsgs});
+            this.asyncUpdate({message: this.changeMsgs})
+            //this.$store.commit('changeMsg',{message:this.changeMsgs})
+            //this.$store.dispatch('asyncUpdate',{message:this.changeMsgs})
         }
+        
     }
 }
 </script>

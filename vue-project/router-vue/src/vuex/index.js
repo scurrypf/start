@@ -5,12 +5,12 @@ Vue.use(Vuex);
 
 const vuexStore = new Vuex.Store({
     state:{
-        msg:'First use Vuex 😀😀😀',
+        msgs:'First use Vuex 😀😀😀',
         imgArr:[0,1,2,3,4,5]
     },
     mutations:{
         changeMsg(a,v){
-            a.msg = v.message;
+            a.msgs = v.message;
         }
     },
     //类似计算属性
@@ -19,6 +19,11 @@ const vuexStore = new Vuex.Store({
             return state.imgArr.map((ele)=>{
                 return require(`@/assets/weathercn02/${ele}.png`)
             })
+        }
+    },
+    actions:{
+        asyncUpdate(value,v){
+            value.commit('changeMsg',v);
         }
     }
 })
