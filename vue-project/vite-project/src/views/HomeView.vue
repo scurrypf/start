@@ -1,5 +1,5 @@
 <script>
-//使用声明周期钩子函数必须要先导入，并且相对于vue2要在前面加上on
+//使用生命周期钩子函数必须要先导入，并且相对于vue2要在前面加上on
 import { onMounted,ref,reactive} from 'vue';
 import { msg,consoleMsg,computeMsg } from '../child/test';
 import { nums } from '../child/watch'
