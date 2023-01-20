@@ -17,6 +17,12 @@
                 
             </template>
         </BallSecond>
+        <div>一秒增加一次
+            <el-button @click="Throttle">
+                click me
+            </el-button>
+        </div>
+        <div>{{ throttle }}</div>
     </div>
 </template>
 
@@ -41,6 +47,8 @@ export default{
             },
             user:{},
             msg:'这是父组件传的第一个值',
+            throttle:0,
+            isAdd:true,
         }
     },
     provide:function(){
@@ -68,6 +76,26 @@ export default{
             //EventBus.$emit(EventType.Data_Type)
             //方法三-一
             MittEvent.emit(MittEventType.Data_Type);
+        },
+        // Throttle(fun,time = 1000) {
+        //     let timer;
+        //     return function(...args){
+        //         if(timer === null){
+        //             fun.apply(this,args);
+        //             setTimeout(()=>{
+        //                 timer = null;
+        //             },time)
+        //         }
+        //     }
+        // }
+        Throttle(){
+            if (this.isAdd) {
+                this.throttle++;
+                this.isAdd = false;
+                setTimeout(() => {
+                    this.isAdd = true;
+                }, 1000)
+            }   
         }
     },
     mounted(){
