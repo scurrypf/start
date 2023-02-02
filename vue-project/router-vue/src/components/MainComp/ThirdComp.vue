@@ -61,6 +61,23 @@
                     </div>
                     vuex测试{{ msgs }}
                     <img v-for="(src,index) in imgUrls" :src="src" :key="index"/>
+                    <div>
+                        <el-button @click="getInput" type="primary">选择单个文件</el-button>
+                        <input ref="visable" class="input-size" type="file" @change="getImginfo($event)">
+                        <el-button @click="uploadImg">上传文件</el-button>
+                        <div>
+                            <!-- <img v-show="imgUrl" :src="imgUrl" height="400" width="800" /> -->
+                            <el-carousel v-show="urls.length !== 0">
+                                <el-carousel-item v-for="url in urls" :key="url">
+                                    <img :src="url" width="1232" height="300" />
+                                </el-carousel-item>
+                            </el-carousel>
+                        </div>
+                        <el-divider></el-divider>
+                        <el-button @click="getMultiinput" type="primary">选择多个文件</el-button>
+                        <input multiple ref="visible" class="input-size" type="file" @change="getmultiImginfo($event)">
+                        <el-button @click="uploadMultiImg">上传文件</el-button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -69,6 +86,7 @@
 
 <script>
 import { state } from '@/store/index.js'
+import { http } from '@/utils/http'
 import { mapGetters,mapState,mapMutations,mapActions } from 'vuex'
 export default{
     name:'ThirdComp',
@@ -76,6 +94,10 @@ export default{
         return {
             TokenData:state,
             changeMsgs:'',
+            file:null,
+            imgUrl:'',
+            urls:[],
+            fileList:[],
         }
     },
     computed:{
@@ -95,8 +117,41 @@ export default{
             this.asyncUpdate({message: this.changeMsgs})
             //this.$store.commit('changeMsg',{message:this.changeMsgs})
             //this.$store.dispatch('asyncUpdate',{message:this.changeMsgs})
+        },
+        getmultiImginfo(){
+            //this.fileList = event.target.files;
+            Array.prototype.forEach.call(event.target.files,file => {
+                this.fileList.push(file);
+            })
+            console.log(this.fileList);
+        },
+        getMultiinput(){
+            this.$refs.visible.click();
+        },
+        getInput(){
+            this.$refs.visable.click();
+        },
+        getImginfo(){
+            this.file = event.target.files[0];
+            console.log(this.file);
+        },
+        async uploadImg(){
+            const formdata = new FormData();
+            formdata.append('img',this.file);
+            const result = await http.post('/uploadsingle',formdata);
+            console.log(result);
+            this.urls.push(result.data.data.imageUrl);
+        },
+        async uploadMultiImg(){
+            const allData = new FormData();
+            //Array-like Object 类数组对象的遍历，将Array的原型方法的this指向改为指向该对象
+            this.fileList.forEach((file,index)=>{
+                allData.append(`multip${index}`,file);
+            })
+            const result = await http.post('/uploadmulti',allData);
+            console.log(result);
+            this.urls = result.data.data.imageUrls;
         }
-        
     }
 }
 </script>
@@ -104,6 +159,12 @@ export default{
 <style lang="scss" scoped>
 .bread{
     padding-top: 20px;
+}
+
+.input-size{
+    // height: 0;
+    // width: 0;
+    display: none;
 }
 .res-nav{
     height: 60px;
