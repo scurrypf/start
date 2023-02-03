@@ -76,7 +76,7 @@
                         <el-divider></el-divider>
                         <el-button @click="getMultiinput" type="primary">选择多个文件</el-button>
                         <input multiple ref="visible" class="input-size" type="file" @change="getmultiImginfo($event)">
-                        <el-button @click="uploadMultiImg">上传文件</el-button>
+                        <el-button @click="uploadMultiImgTogether">上传文件</el-button>
                     </div>
                 </div>
             </div>
@@ -135,6 +135,7 @@ export default{
             this.file = event.target.files[0];
             console.log(this.file);
         },
+        //上传单文件
         async uploadImg(){
             const formdata = new FormData();
             formdata.append('img',this.file);
@@ -142,6 +143,7 @@ export default{
             console.log(result);
             this.urls.push(result.data.data.imageUrl);
         },
+        //多文件一次上传
         async uploadMultiImg(){
             const allData = new FormData();
             //Array-like Object 类数组对象的遍历，将Array的原型方法的this指向改为指向该对象
@@ -151,6 +153,35 @@ export default{
             const result = await http.post('/uploadmulti',allData);
             console.log(result);
             this.urls = result.data.data.imageUrls;
+        },
+        //多文件序列化多次上传,通过for循环和await来控制只有当上一个文件请求发送成功并返回后
+        //再发送下一次请求
+        async uploadMultiImgSeq(){
+            for(let i = 0 ; i < this.fileList.length ; i++){
+                let singleData = new FormData();
+                singleData.append('img',this.fileList[i]);
+                let result = await http.post('/uploadsingle',singleData);
+                console.log(result);
+                this.urls.push(result.data.data.imageUrl);
+            }
+        },
+        //多文件同时多次上传
+        async uploadMultiImgTogether(){
+            let asyncTask = [];
+            this.fileList.forEach((file)=>{
+                let togetherData = new FormData();
+                togetherData.append('img',file);
+                //这里不要加上await，因为我们需要的是所有请求的最后返回的时间节点
+                //在不加await时，其赋值的便是一个promise异步任务，
+                //我们只需使用Promise.all方法即可实现得到它们全部返回的结果
+                //并且可以在最慢请求的时间点得到返回值
+                let task = http.post('/uploadsingle',togetherData);//注：虽然这里没有await，但此时请求已经被执行
+                asyncTask.push(task)
+            })
+            //这里不需要使用then，直接使用await即可
+            //Promise.all(asyncTask).then(res => console.log(res));
+            const result = await Promise.all(asyncTask);
+            console.log(result);
         }
     }
 }
