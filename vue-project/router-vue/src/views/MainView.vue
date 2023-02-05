@@ -8,7 +8,7 @@
         </div>
         <el-dropdown trigger="click">
           <div>
-            <img class="headImg" src="../assets/头像.jpg" />
+            <img class="headImg" src="../assets/headImg.jpg" />
           </div>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item>{{ $t('msg.myMain') }}</el-dropdown-item>

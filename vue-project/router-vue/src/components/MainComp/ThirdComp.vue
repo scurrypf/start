@@ -182,6 +182,9 @@ export default{
             //Promise.all(asyncTask).then(res => console.log(res));
             const result = await Promise.all(asyncTask);
             console.log(result);
+            for(let data of result){
+                this.urls.push(data.data.data.imageUrl)
+            }
         }
     }
 }

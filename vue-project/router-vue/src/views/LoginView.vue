@@ -8,7 +8,7 @@
       </div>
     <div class="container">
       <div class="bgimg">
-        <img src="../assets/心海.jpeg" height="100%" width="100%">
+        <img src="../assets/kokomi.jpeg" height="100%" width="100%">
       </div>
       <div class="right">
         <div>

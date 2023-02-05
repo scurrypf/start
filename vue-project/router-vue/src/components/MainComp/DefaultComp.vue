@@ -4,7 +4,7 @@
             linesColor="#39AFFD" :linesWidth="1" :lineLinked="true" :lineOpacity="0.4" :linesDistance="150"
             :moveSpeed="3" :hoverEffect="true" hoverMode="grab" :clickEffect="true" clickMode="push" class="lizi" /> -->
         <div>
-            <img class="bgImag" src="../../assets/心海.jpeg" />
+            <img class="bgImag" src="../../assets/kokomi.jpeg" />
             <!-- https://images.pexels.com/photos/311039/pexels-photo-311039.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1 -->
         </div>
             <div class="welcome">
@@ -25,11 +25,11 @@ export default{
             imgItem:[
                 {
                     id:'1',
-                    url:require('../../assets/心海.jpeg')
+                    url:require('../../assets/kokomi.jpeg')
                 },
                 {
                     id:'2',
-                    url:require('../../assets/头像.jpg')
+                    url:require('../../assets/headImg.jpg')
                 },
                 {
                     id:'3',
