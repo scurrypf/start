@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import {http} from '@/utils/http'
+import { weather} from '@/utils/weather'
 const keyMap = {
     city:'城市',
     cityid:'城市标识',
@@ -72,7 +72,7 @@ export default{
     methods: {
         async getWeather() {
             const removeKey = ["index", "aqi", "daily", "hourly", "week"];
-            const { data } = await http.get("/weather/query", { params: { city: this.city } });
+            const { data } = await weather.get("/weather/query", { params: { city: this.city } });
             console.log(data.result);
             let Data = [];
             Object.entries(data.result).forEach(([key, value]) => {

@@ -52,7 +52,6 @@
 
 <script>
 import NavComp from '@/components/NavComp.vue';
-import {getToken} from '@/utils/store.js';
 import { http } from '@/utils/http';
 export default {
   //预定义属性
@@ -72,7 +71,6 @@ export default {
   },
   methods: {
     async pdMM () {
-        // if(this.user==='zpf' && this.pass==='123456'){
           const result = await http.post('/login',{username:this.user,pass:this.pass});
           const data = result.data;
           if(data.success){
@@ -82,6 +80,7 @@ export default {
         });
         //TODO:路由守卫
         const token = await data.data.token;
+        console.log(token)
         sessionStorage.setItem('token',token); 
         //TODO:路由跳转
         this.$router.push({path: `/main/${this.user}`,query:{user:this.user}})
