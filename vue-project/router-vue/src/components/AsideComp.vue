@@ -25,6 +25,10 @@
                 <i class="el-icon-s-data"></i>
                 <span slot="title">{{ $t('msg.table') }}</span>
             </el-menu-item>
+            <el-menu-item index="7">
+                <i class="el-icon-s-data"></i>
+                <span slot="title">权限管理</span>
+            </el-menu-item>
             <!-- <el-menu-item index="5">
                 <i class="el-icon-document"></i>
                 <span slot="title">Form</span>
@@ -50,6 +54,7 @@ export default{
         this.indexMap.set('4',`/main/${this.$route.params.userName}/four`);
         // this.indexMap.set('5',`/main/${this.$route.params.userName}/five`);
         this.indexMap.set('6',`/main/${this.$route.params.userName}/six`);
+        this.indexMap.set('7',`/main/${this.$route.params.userName}/seven`);
     },
     methods:{
         activeRouter(index){

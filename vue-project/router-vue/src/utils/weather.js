@@ -8,7 +8,7 @@ const PRODUCTION_URL = 'http://jisutqybmf.market.alicloudapi.com';
 
 const weather = axios.create({
     baseURL:PRODUCTION_URL,
-    timeout:1000,
+    timeout:10000,
     headers:{
         Authorization:'APPCODE d686570081264047b8b7aaec01fb82dc',
     }

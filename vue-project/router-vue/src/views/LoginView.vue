@@ -88,16 +88,6 @@ export default {
           this.$message.error('登录失败，账号或密码错误');
         }
       },
-    // add1 () {
-    //     if(this.user!=="" && this.pass!==""){
-    //       this.$message({
-    //         message: `注册成功,用户名为${this.user},密码为${this.pass}`,
-    //         type: 'success'
-    //     }); 
-    //     }else{
-    //       this.$message.error('注册失败，请输入用户名和密码');
-    //     }
-    //   },
   }
 }
 </script>
