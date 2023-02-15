@@ -2,10 +2,10 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import LoginView from '../views/LoginView.vue'
 import DefaultComp from '../components/MainComp/DefaultComp.vue'
-import ThirdComp from '../components/MainComp/ThirdComp.vue'
-import FourComp from '../components/MainComp/FourComp.vue'
+import ThirdComp from '../components/MainComp/StudyComp.vue'
+import FourComp from '../components/MainComp/TestComp.vue'
 import FiveComp from '../components/MainComp/FiveComp.vue'
-import SixComp from '../components/MainComp/SixComp.vue'
+import SixComp from '../components/MainComp/WeatherComp.vue'
 import UserdataComp from '../components/MainComp/UserdataComp.vue'
 
 Vue.use(VueRouter)
@@ -32,11 +32,11 @@ const routesArr = [
       },
       {
         path:'first',
-        component: ()=> import(/* webpackChunkName: "about" */ '../components/MainComp/FirstComp.vue')
+        component: ()=> import(/* webpackChunkName: "about" */ '../components/MainComp/InfoComp.vue')
       },
       {
         path:'second',
-        component: ()=> import(/* webpackChunkName: "about" */ '../components/MainComp/SecondComp.vue')
+        component: ()=> import(/* webpackChunkName: "about" */ '../components/MainComp/CalendarComp.vue')
       },
       {
         path:'third',

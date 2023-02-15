@@ -8,10 +8,12 @@
         </div>
         <el-divider></el-divider>
         <!--   -->
-        <el-table :data="tableData" border style="width: 1200px" height="373" class="tablestyle" stripe>
-            <el-table-column fixed prop="username" label="用户名" width="350"></el-table-column>
-            <el-table-column prop="sex" label="性别" width="350"></el-table-column>
-            <el-table-column prop="pass" label="密码" width="350"></el-table-column>
+        <el-table :data="tableData" border style="width: 1200px" height="374" class="tablestyle" stripe>
+            <el-table-column fixed prop="id" label="ID" width="100"></el-table-column>
+            <el-table-column prop="username" label="用户名" width="250"></el-table-column>
+            <el-table-column prop="sex" label="性别" width="200"></el-table-column>
+            <el-table-column prop="pass" label="密码" width="300"></el-table-column>
+            <el-table-column prop="post" label="职位" width="200"></el-table-column>
             <el-table-column label="操作">    
                 <template slot-scope="scope">
                     <el-button @click="getUpdate(scope.row)" type="text" size="medium">编辑</el-button>
@@ -30,6 +32,9 @@
                             <el-form-item label="密码">
                                 <el-input v-model="password" autocomplete="off"></el-input>
                             </el-form-item>
+                            <el-form-item label="职位">
+                                <el-input v-model="post" autocomplete="off"></el-input>
+                            </el-form-item>
                         </el-form>
                         <div slot="footer" class="dialog-footer">
                             <el-button @click="dialogformVisible = false">取 消</el-button>
@@ -41,7 +46,8 @@
                 </template>
             </el-table-column>
         </el-table>
-        <el-pagination background layout="prev, pager, next" :total="20"></el-pagination>
+        <el-pagination style="text-align: center;" background @current-change="handleCurrentChange" :current-page="pagenum" layout="prev, pager, next"
+            :total="totalData" :page-size="5"></el-pagination>
         <div>
           <el-button @click="getadd" icon="el-icon-plus" type="primary" class="add" plain>添加用户</el-button>
           <el-dialog title="添加用户" :visible.sync="dialogFormVisible">
@@ -56,6 +62,9 @@
               <el-form-item label="密码">
                 <el-input v-model="pass" autocomplete="off"></el-input>
               </el-form-item>
+            <el-form-item label="职位">
+                <el-input v-model="posts" autocomplete="off"></el-input>
+            </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
               <el-button @click="dialogFormVisible = false">取 消</el-button>
@@ -78,10 +87,15 @@ export default{
             username:'',
             sex:'',
             pass:'',
+            posts:'',
             name:'',
             sexy:'',
             password:'',
+            post:'',
             id:'',
+            totalData:0,
+            pagenum:0,
+
         }
     },
     methods:{
@@ -94,47 +108,75 @@ export default{
             this.name = row.username;
             this.sexy = row.sex;
             this.password = row.pass;
+            this.post = row.post;
             this.id = row.id;
         },
-        addSuc() {
+        async addSuc() {
             this.dialogFormVisible = false;
-            let username = this.username, sex = this.sex, pass = this.pass;
+            let username = this.username, sex = this.sex, pass = this.pass , post = this.posts;
             let data = new FormData();
             data.append('username', username);
             data.append('sex', sex);
             data.append('pass', pass);
-            http.post('/sql/adduser', data);
-            this.getData();
-            location.reload();
+            data.append('post', post);
+            const res = await http.post('/sql/adduser', data);
+            if(res.data.success){
+                this.$message({
+                    message: '添加用户成功',
+                    type: 'success'
+                });
+                this.getData();
+                // location.reload();
+            }
         },
-        deleteUser(row){
+        async deleteUser(row){
             let id = row.id;
             let data = new FormData();
             data.append('id',id);
-            // console.log(row.id);
-            http.post('/sql/delete',data);
-            this.getData();
-            location.reload();
+            const res = await http.post('/sql/delete',data);
+            if(res.data.success){
+                this.$message({
+                    message: '删除成功',
+                    type: 'success'
+                });
+                this.getData();
+                location.reload();
+            }
         },
         updateUser(){
             this.dialogFormVisible = false;
-            let username = this.name, sex = this.sexy, pass = this.password , id = this.id;
+            let username = this.name, sex = this.sexy, pass = this.password , id = this.id , post = this.post;
             let data = new FormData();
             data.append('username', username);
             data.append('sex', sex);
             data.append('pass', pass);
             data.append('id', id);
+            data.append('post', post);
             http.post('/sql/update', data);
             this.getData();
             location.reload();
         },
         async getData(){
-            const res = await http.get('/select')
+            let formdata = new FormData();
+                formdata.append('start',0)
+            const res = await http.post('/select',formdata)
             this.tableData = res.data.data;
-        }
+        },
+        async handleCurrentChange(newPage){
+            this.pagenum = newPage;
+            let formdata = new FormData();
+            formdata.append('start',(newPage - 1)*5)
+            const res = await http.post('/select',formdata)
+            this.tableData = res.data.data;
+        },
+        async getAll(){
+            const res = await http.get('/queryall')
+            this.totalData = res.data.data.length;
+        },
     },
     async mounted(){
         this.getData();
+        this.getAll();
     }
 }
 </script>

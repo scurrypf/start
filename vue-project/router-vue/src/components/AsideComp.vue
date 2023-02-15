@@ -25,14 +25,22 @@
                 <i class="el-icon-s-data"></i>
                 <span slot="title">{{ $t('msg.table') }}</span>
             </el-menu-item>
-            <el-menu-item index="7">
+            <el-menu-item index="7" v-if="isAdmin">
                 <i class="el-icon-s-data"></i>
                 <span slot="title">权限管理</span>
             </el-menu-item>
-            <!-- <el-menu-item index="5">
-                <i class="el-icon-document"></i>
-                <span slot="title">Form</span>
-            </el-menu-item> -->
+            <el-submenu index="8">
+                <template slot="title">
+                    <i class="el-icon-setting"></i>
+                    <span>球员管理</span>
+                </template>
+                <el-menu-item-group>
+                    <template slot="title">分组一</template>
+                    <el-menu-item index="1-1">选项1</el-menu-item>
+                    <el-menu-item index="1-2">选项2</el-menu-item>
+                    <el-menu-item index="1-1">选项1</el-menu-item>
+                </el-menu-item-group>
+            </el-submenu>
         </el-menu>
     </div>
     <div class="aside-foot">copyRight@Tencent2002-2023</div>
@@ -45,6 +53,7 @@ export default{
         return{
             navIndex:'',
             indexMap:new Map(),
+            isAdmin:false,
         } 
     },
     mounted(){
@@ -55,6 +64,9 @@ export default{
         // this.indexMap.set('5',`/main/${this.$route.params.userName}/five`);
         this.indexMap.set('6',`/main/${this.$route.params.userName}/six`);
         this.indexMap.set('7',`/main/${this.$route.params.userName}/seven`);
+        if(this.$route.params.userName === 'admin'){
+            this.isAdmin = true;
+        }
     },
     methods:{
         activeRouter(index){

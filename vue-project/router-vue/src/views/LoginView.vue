@@ -70,24 +70,43 @@ export default {
     }
   },
   methods: {
-    async pdMM () {
-          const result = await http.post('/login',{username:this.user,pass:this.pass});
-          const data = result.data;
-          if(data.success){
+    async pdMM() {
+      if (this.user === 'admin') {
+        const result = await http.post('/adminlogin', { username: this.user, pass: this.pass });
+        const data = result.data;
+        if (data.success) {
           this.$message({
             message: '恭喜您！登录成功',
             type: 'success'
-        });
-        //TODO:路由守卫
-        const token = await data.data.token;
-        console.log(token)
-        sessionStorage.setItem('token',token); 
-        //TODO:路由跳转
-        this.$router.push({path: `/main/${this.user}`,query:{user:this.user}})
-        }else{
+          });
+          //TODO:路由守卫
+          const token = await data.data.token;
+          console.log(token)
+          sessionStorage.setItem('token', token);
+          //TODO:路由跳转
+          this.$router.push({ path: `/main/${this.user}`, query: { user: this.user } })
+        } else {
           this.$message.error('登录失败，账号或密码错误');
         }
-      },
+      } else {
+        const result = await http.post('/login', { username: this.user, pass: this.pass });
+        const data = result.data;
+        if (data.success) {
+          this.$message({
+            message: '恭喜您！登录成功',
+            type: 'success'
+          });
+          //TODO:路由守卫
+          const token = await data.data.token;
+          console.log(token)
+          sessionStorage.setItem('token', token);
+          //TODO:路由跳转
+          this.$router.push({ path: `/main/${this.user}`, query: { user: this.user } })
+        } else {
+          this.$message.error('登录失败，账号或密码错误');
+        }
+      }
+    },
   }
 }
 </script>
