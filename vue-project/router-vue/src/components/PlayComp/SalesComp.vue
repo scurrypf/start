@@ -92,7 +92,7 @@
 import { http } from '@/utils/http';
 
 export default{
-    name:'PlayerComp',
+    name:'SalesComp',
     data:function(){
         return {
             playerData:[],

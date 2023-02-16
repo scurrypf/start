@@ -19,20 +19,20 @@
                     <el-button @click="getUpdate(scope.row)" type="text" size="medium">编辑</el-button>
                     <el-dialog title="更新用户" :visible.sync="dialogformVisible" :append-to-body="true" boder="false">
                         <el-form>
-                            <el-form-item label="ID">
+                            <el-form-item label="ID" label-width="120px">
                                 {{ id }}
                             </el-form-item>
-                            <el-form-item label="用户名">
+                            <el-form-item label="用户名" label-width="120px">
                                 <el-input v-model="name" autocomplete="off"></el-input>
                             </el-form-item>
-                            <el-form-item label="性别">
+                            <el-form-item label="性别" label-width="120px">
                                 <el-radio v-model="sexy" label="男">男</el-radio>
                                 <el-radio v-model="sexy" label="女">女</el-radio>
                             </el-form-item>
-                            <el-form-item label="密码">
+                            <el-form-item label="密码" label-width="120px">
                                 <el-input v-model="password" autocomplete="off"></el-input>
                             </el-form-item>
-                            <el-form-item label="职位">
+                            <el-form-item label="职位" label-width="120px">
                                 <el-input v-model="post" autocomplete="off"></el-input>
                             </el-form-item>
                         </el-form>
@@ -52,17 +52,17 @@
           <el-button @click="getadd" icon="el-icon-plus" type="primary" class="add" plain>添加用户</el-button>
           <el-dialog title="添加用户" :visible.sync="dialogFormVisible">
             <el-form>
-              <el-form-item label="用户名">
+              <el-form-item label="用户名" label-width="120px">
                 <el-input v-model="username" autocomplete="off"></el-input>
               </el-form-item>
-              <el-form-item label="性别">
+              <el-form-item label="性别" label-width="120px">
                 <el-radio v-model="sex" label="男">男</el-radio>
                 <el-radio v-model="sex" label="女">女</el-radio>
               </el-form-item>
-              <el-form-item label="密码">
+              <el-form-item label="密码" label-width="120px">
                 <el-input v-model="pass" autocomplete="off"></el-input>
               </el-form-item>
-            <el-form-item label="职位">
+            <el-form-item label="职位" label-width="120px">
                 <el-input v-model="posts" autocomplete="off"></el-input>
             </el-form-item>
             </el-form>
@@ -95,7 +95,6 @@ export default{
             id:'',
             totalData:0,
             pagenum:0,
-
         }
     },
     methods:{

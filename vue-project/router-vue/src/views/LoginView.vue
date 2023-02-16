@@ -29,7 +29,7 @@
           </el-form-item>
           <!-- <el-form-item label="密码："> -->
             <el-form-item :label="$t('msg.passwd')">
-            <el-input v-model="pass" type="password" :placeholder="$t('msg.pleasePass')" size="meadium"/>
+            <el-input v-model="pass" type="password" :placeholder="$t('msg.pleasePass')" size="meadium" show-password="true"/>
           </el-form-item>
           <el-checkbox>{{ $t('msg.remeber') }}</el-checkbox>
           <el-form-item>

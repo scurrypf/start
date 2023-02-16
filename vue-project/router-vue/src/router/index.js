@@ -2,11 +2,14 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import LoginView from '../views/LoginView.vue'
 import DefaultComp from '../components/MainComp/DefaultComp.vue'
-import ThirdComp from '../components/MainComp/StudyComp.vue'
+import StudyComp from '../components/MainComp/StudyComp.vue'
 import FourComp from '../components/MainComp/TestComp.vue'
 import FiveComp from '../components/MainComp/FiveComp.vue'
 import SixComp from '../components/MainComp/WeatherComp.vue'
 import UserdataComp from '../components/MainComp/UserdataComp.vue'
+import PlayerComp from '../components/PlayComp/PlayerComp.vue'
+import PlayerdataComp from '../components/PlayComp/PlayerdataComp.vue'
+import SalesComp from '../components/PlayComp/SalesComp.vue'
 
 Vue.use(VueRouter)
 
@@ -31,16 +34,16 @@ const routesArr = [
         component:DefaultComp,
       },
       {
-        path:'first',
+        path:'info',
         component: ()=> import(/* webpackChunkName: "about" */ '../components/MainComp/InfoComp.vue')
       },
       {
-        path:'second',
+        path:'calendar',
         component: ()=> import(/* webpackChunkName: "about" */ '../components/MainComp/CalendarComp.vue')
       },
       {
-        path:'third',
-        component:ThirdComp,
+        path:'study',
+        component:StudyComp,
       },
       {
         path:'four',
@@ -51,12 +54,24 @@ const routesArr = [
         component:FiveComp,
       },
       {
-        path:'six',
+        path:'weather',
         component:SixComp,
       },
       {
-        path:'seven',
+        path:'userdata',
         component:UserdataComp,
+      },
+      {
+        path:'player',
+        component:PlayerComp,
+      },
+      {
+        path:'data',
+        component:PlayerdataComp,
+      },
+      {
+        path:'sales',
+        component:SalesComp,
       },
       {
         path:'',
