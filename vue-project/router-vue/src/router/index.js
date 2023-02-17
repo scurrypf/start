@@ -10,6 +10,7 @@ import UserdataComp from '../components/MainComp/UserdataComp.vue'
 import PlayerComp from '../components/PlayComp/PlayerComp.vue'
 import PlayerdataComp from '../components/PlayComp/PlayerdataComp.vue'
 import SalesComp from '../components/PlayComp/SalesComp.vue'
+import RadarchartComp from '../components/MainComp/RadarchartComp.vue'
 
 Vue.use(VueRouter)
 
@@ -72,6 +73,10 @@ const routesArr = [
       {
         path:'sales',
         component:SalesComp,
+      },
+      {
+        path:'chart',
+        component:RadarchartComp,
       },
       {
         path:'',

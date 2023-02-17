@@ -41,6 +41,10 @@
                     <el-menu-item index="1-3">球员薪水</el-menu-item>
                 </el-menu-item-group>
             </el-submenu>
+            <el-menu-item index="9">
+                <i class="el-icon-s-data"></i>
+                <span slot="title">球员能力</span>
+            </el-menu-item>
         </el-menu>
     </div>
     <div class="aside-foot">copyRight@Tencent2002-2023</div>
@@ -67,6 +71,7 @@ export default{
         this.indexMap.set('1-1',`/main/${this.$route.params.userName}/player`);
         this.indexMap.set('1-2',`/main/${this.$route.params.userName}/data`);
         this.indexMap.set('1-3',`/main/${this.$route.params.userName}/sales`);
+        this.indexMap.set('9',`/main/${this.$route.params.userName}/chart`);
         if(this.$route.params.userName === 'admin'){
             this.isAdmin = true;
         }

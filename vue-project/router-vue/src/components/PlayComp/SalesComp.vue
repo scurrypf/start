@@ -9,39 +9,31 @@
         </div>
         <el-divider></el-divider>
         <!--   -->
-        <el-table :data="playerData" border style="width: 1200px" height="439" stripe>
-            <el-table-column fixed prop="id" label="ID" width="50"></el-table-column>
+        <el-table :data="playerData" border style="width: 1100px" height="439" stripe>
             <el-table-column prop="name" label="姓名" width="150"></el-table-column>
-            <el-table-column prop="number" label="号码" width="100"></el-table-column>
-            <el-table-column prop="height" label="身高/cm" width="200"></el-table-column>
-            <el-table-column prop="weight" label="体重/kg" width="200"></el-table-column>
-            <el-table-column prop="reach" label="臂展/cm" width="200"></el-table-column>
-            <el-table-column prop="play" label="位置" width="150"></el-table-column>
+            <el-table-column prop="saletype" label="薪资类型" width="200"></el-table-column>
+            <el-table-column prop="contract" label="合同" width="200"></el-table-column>
+            <el-table-column prop="currentsale" label="当前薪资" width="200"></el-table-column>
+            <el-table-column prop="nextsale" label="明年薪资" width="200"></el-table-column>
             <el-table-column label="操作">
                 <template slot-scope="scope">
                     <el-button @click="getUpdate(scope.row)" type="text" size="medium">编辑</el-button>
                     <el-dialog title="更新球员" :visible.sync="dialogFormVisible" :append-to-body="true">
                         <el-form>
-                            <el-form-item label="ID" label-width="120px">
-                                {{ id }}
-                            </el-form-item>
                             <el-form-item label="姓名" label-width="100px">
-                                <el-input v-model="name" autocomplete="off"></el-input>
+                                {{name}}
                             </el-form-item>
-                            <el-form-item label="号码" label-width="100px">
-                                <el-input v-model="number" autocomplete="off"></el-input>
+                            <el-form-item label="薪资类型" label-width="100px">
+                                <el-input v-model="saletype" autocomplete="off"></el-input>
                             </el-form-item>
-                            <el-form-item label="身高/cm" label-width="100px">
-                                <el-input v-model="height" autocomplete="off"></el-input>
+                            <el-form-item label="合同" label-width="100px">
+                                <el-input v-model="contract" autocomplete="off"></el-input>
                             </el-form-item>
-                            <el-form-item label="体重/kg" label-width="100px">
-                                <el-input v-model="weight" autocomplete="off"></el-input>
+                            <el-form-item label="当前薪资" label-width="100px">
+                                <el-input v-model="currentsale" autocomplete="off"></el-input>
                             </el-form-item>
-                            <el-form-item label="臂展/cm" label-width="100px">
-                                <el-input v-model="reach" autocomplete="off"></el-input>
-                            </el-form-item>
-                            <el-form-item label="位置" label-width="100px">
-                                <el-input v-model="play" autocomplete="off"></el-input>
+                            <el-form-item label="明年薪资" label-width="100px">
+                                <el-input v-model="nextsale" autocomplete="off"></el-input>
                             </el-form-item>
                         </el-form>
                         <div slot="footer" class="dialog-footer">
@@ -63,20 +55,17 @@
                     <el-form-item label="姓名" label-width="100px">
                         <el-input v-model="names" autocomplete="off"></el-input>
                     </el-form-item>
-                    <el-form-item label="号码" label-width="100px">
-                        <el-input v-model="numbers" autocomplete="off"></el-input>
+                    <el-form-item label="薪资类型" label-width="100px">
+                        <el-input v-model="saletypes" autocomplete="off"></el-input>
                     </el-form-item>
-                    <el-form-item label="身高/cm" label-width="100px">
-                        <el-input v-model="heights" autocomplete="off"></el-input>
+                    <el-form-item label="合同" label-width="100px">
+                        <el-input v-model="contracts" autocomplete="off"></el-input>
                     </el-form-item>
-                    <el-form-item label="体重/kg" label-width="100px">
-                        <el-input v-model="weights" autocomplete="off"></el-input>
+                    <el-form-item label="当前薪资" label-width="100px">
+                        <el-input v-model="currentsales" autocomplete="off"></el-input>
                     </el-form-item>
-                    <el-form-item label="臂展/cm" label-width="100px">
-                        <el-input v-model="reachs" autocomplete="off"></el-input>
-                    </el-form-item>
-                    <el-form-item label="位置" label-width="100px">
-                        <el-input v-model="plays" autocomplete="off"></el-input>
+                    <el-form-item label="明年薪资" label-width="100px">
+                        <el-input v-model="nextsales" autocomplete="off"></el-input>
                     </el-form-item>
                 </el-form>
                 <div slot="footer" class="dialog-footer">
@@ -101,25 +90,22 @@ export default{
             dialogFormVisible:false,
             dialogformVisible:false,
             name:'',
-            number:'',
-            height:'',
-            weight:'',
-            reach:'',
-            play:'',
+            saletype:'',
+            contract:'',
+            currentsale:'',
+            nextsale:'',
             names:'',
-            numbers:'',
-            heights:'',
-            weights:'',
-            reachs:'',
-            plays:'',
-            id:'',
+            saletypes:'',
+            contracts:'',
+            currentsales:'',
+            nextsales:'',
         }
     },
     methods:{
         async getPlayer(){
             let formdata = new FormData();
             formdata.append('start', 0)
-            const res = await http.post('/player/select',formdata)
+            const res = await http.post('/playersale/select',formdata)
             console.log(res);
             this.playerData = res.data.data;
         },
@@ -130,25 +116,22 @@ export default{
             this.dialogFormVisible = true;
             console.log(row);
             this.name = row.name;
-            this.number = row.number;
-            this.height = row.height;
-            this.weight = row.weight;
-            this.id = row.id;
-            this.reach = row.reach;
-            this.play = row.play;
+            this.saletype = row.saletype;
+            this.contract = row.contract;
+            this.currentsale = row.currentsale;
+            this.nextsale = row.nextsale;
         },
         async addSuc() {
             this.dialogformVisible = false;
-            let name = this.names, number = this.numbers, height = this.heights , weight = this.weights;
-            let reach = this.reachs, play = this.plays;
+            let name = this.names, saletype = this.saletypes, contract = this.contracts, currentsale = this.currentsales;
+            let nextsale = this.nextsales;
             let data = new FormData();
             data.append('name', name);
-            data.append('number', number);
-            data.append('height', height);
-            data.append('weight', weight);
-            data.append('reach', reach);
-            data.append('play', play);
-            const res = await http.post('/player/add', data);
+            data.append('saletype', saletype);
+            data.append('contract', contract);
+            data.append('currentsale', currentsale);
+            data.append('nextsale', nextsale);
+            const res = await http.post('/playersale/add', data);
             if(res.data.success){
                 this.$message({
                     message: '添加球员成功',
@@ -159,10 +142,10 @@ export default{
             }
         },
         async deletePlayer(row){
-            let id = row.id;
+            let name = row.name;
             let data = new FormData();
-            data.append('id',id);
-            const res = await http.post('/player/delete',data);
+            data.append('name',name);
+            const res = await http.post('/playersale/delete',data);
             if(res.data.success){
                 this.$message({
                     message: '删除成功',
@@ -174,17 +157,15 @@ export default{
         },
         updateSuc(){
             this.dialogFormVisible = false;
-            let name = this.name, number = this.number, height = this.height , weight = this.weight;
-            let reach = this.reach, play = this.play , id = this.id;
+            let name = this.name, saletype = this.saletype, contract = this.contract, currentsale = this.currentsale;
+            let nextsale = this.nextsale;
             let data = new FormData();
             data.append('name', name);
-            data.append('number', number);
-            data.append('height', height);
-            data.append('weight', weight);
-            data.append('reach', reach);
-            data.append('play', play);
-            data.append('id',id)
-            http.post('/player/update', data);
+            data.append('saletype', saletype);
+            data.append('contract', contract);
+            data.append('currentsale', currentsale);
+            data.append('nextsale', nextsale);
+            http.post('/playersale/update', data);
             this.getPlayer();
             location.reload();
         },
@@ -192,11 +173,11 @@ export default{
             this.pagenum = newPage;
             let formdata = new FormData();
             formdata.append('start',(newPage - 1)*6)
-            const res = await http.post('/player/select',formdata)
+            const res = await http.post('/playersale/select',formdata)
             this.playerData = res.data.data;
         },
         async getAll(){
-            const res = await http.get('/player/queryall')
+            const res = await http.get('/playersale/queryall')
             this.totalData = res.data.data.length;
         },
     },
