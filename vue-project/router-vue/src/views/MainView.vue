@@ -20,9 +20,11 @@
         </el-dropdown>
       </div>
       <div class="logo">
-        <img src="https://www.tencent.com/img/index/menu_logo_hover.png" height="22px"/>        
+        <!-- <img src="https://www.tencent.com/img/index/menu_logo_hover.png" height="22px"/>         -->
+        <img src="../assets/warrios.png" height="48px"/>
         <!-- <el-input placeholder="请输入搜索内容" prefix-icon="el-icon-search" size="small" v-model="search"/> -->
       </div>
+      <span class="logoWord">Golden State</span>
       </div>
     <div class="sort">
       <div class="right">
@@ -134,7 +136,7 @@ export default {
   }
   .logo{
     position: absolute;
-    top: 20px;
+    top: 7px;
     left: 20px;
   }
 }
@@ -181,5 +183,16 @@ export default {
     }
   }
 }
-
+.logoWord{
+    position: absolute;
+    top: 16px;
+    left: 72px;
+    font-size: 30px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    background: -webkit-linear-gradient(315deg, #ff6464, #183fab89);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 </style>

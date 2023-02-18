@@ -3,8 +3,10 @@
     <div class="nav">
       <nav-comp></nav-comp>
       <div class="logo">
-        <img src="https://www.tencent.com/img/index/menu_logo_hover.png" height="22px"/>        
+        <!-- <img src="https://www.tencent.com/img/index/menu_logo_hover.png" height="22px"/>         -->
+        <img src="../assets/warrios.png" height="48px" />
       </div>
+      <span class="logoWord">Golden State</span>
       </div>
     <div class="container">
       <div class="bgimg">
@@ -29,7 +31,7 @@
           </el-form-item>
           <!-- <el-form-item label="密码："> -->
             <el-form-item :label="$t('msg.passwd')">
-            <el-input v-model="pass" type="password" :placeholder="$t('msg.pleasePass')" size="meadium" show-password="true"/>
+            <el-input v-model="pass" type="password" :placeholder="$t('msg.pleasePass')" size="meadium" show-password />
           </el-form-item>
           <el-checkbox>{{ $t('msg.remeber') }}</el-checkbox>
           <el-form-item>
@@ -98,7 +100,7 @@ export default {
           });
           //TODO:路由守卫
           const token = await data.data.token;
-          console.log(token)
+          // console.log(token)
           sessionStorage.setItem('token', token);
           //TODO:路由跳转
           this.$router.push({ path: `/main/${this.user}`, query: { user: this.user } })
@@ -222,7 +224,7 @@ export default {
   }
   .logo{
     position: absolute;
-    top: 20px;
+    top: 7px;
     left: 20px;
   }
 }
@@ -231,5 +233,17 @@ export default {
   justify-content: center;
   position: relative;
   right: 25px;
+}
+.logoWord{
+    position: absolute;
+    top: 16px;
+    left: 72px;
+    font-size: 30px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    background: -webkit-linear-gradient(315deg, #ff6464, #183fab89);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 </style>

@@ -8,15 +8,16 @@
         </div>
         <el-divider></el-divider>
         <div>
-            <el-select v-model="name" placeholder="请选择球员">
+            <el-select v-model="name" placeholder="请选择球员" @change="setMyEchart">
                 <el-option v-for="item in player" :key="item.value" :label="item.label" :value="item.value">
                 </el-option>
             </el-select>
-            <!-- <span style="width: 20px;"></span> -->
-            <el-select v-model="data" placeholder="请选择数据">
+            <span>&emsp;</span>
+            <el-select v-model="data" placeholder="请选择数据" @change="setMyEchart">
                 <el-option v-for="item in playerdata" :key="item.value" :label="item.label" :value="item.value">
                 </el-option>
             </el-select>
+            <div class="add">注：未参加比赛的球员不进行能力统计</div>
         </div>
         <el-divider></el-divider>
         <div id="myechart" style="height:500px;width: 100%;" ref="myechart"></div>
@@ -25,6 +26,7 @@
 
 <script>
 import * as echarts from "echarts";
+import {http} from '../../utils/http'
 export default{
     name:'RadarchartComp',
     data:function() {
@@ -42,8 +44,32 @@ export default{
                 value:'Andrew Wiggins',
                 label:'Andrew Wiggins'
             },{
+                value:'Gary Payton II',
+                label:'Gary Payton II'
+            },{
+                value:'Otto Porter',
+                label:'Otto Porter'
+            },{
                 value:'Jordon Poole',
                 label:'Jordon Poole'
+            },{
+                value:'Donte Divicenzo',
+                label:'Donte Divicenzo'
+            },{
+                value:'Kevon Looney',
+                label:'Kevon Looney'
+            },{
+                value:'Anthony Lamb',
+                label:'Anthony Lamb'
+            },{
+                value:'Jonathan Kuminga',
+                label:'Jonathan Kuminga'
+            },{
+                value:'JaMychal Green',
+                label:'JaMychal Green'
+            },{
+                value:'Moses Moody',
+                label:'Moses Moody'
             },
         ],
             playerdata:[{
@@ -54,16 +80,71 @@ export default{
                 label:'高阶数据'
             },
         ],
-            name:'Ste',
+            name:'',
             data:'',
+            time:'',
+            score:'',
+            backboard:'',
+            assist:'',
+            stolen:'',
+            block:'',
+            EPM:'',
+            LEBRON:'',
+            RAPTOR:'',
+            BPM:'',
+            arr:[],
+            maxscore:'',
+            maxbackboard:'',
+            maxassist:'',
+            maxstolen:'',
+            maxblock:'',
+            first:'',
+            second:'',
+            third:'',
+            four:'',
+            five:'',
+            averscore:'',
+            averbackboard:'',
+            averassist:'',
+            averstolen:'',
+            averblock:'',
         }
     },
     mounted() {
         this.setMyEchart();
+        this.getAll();
     },
     methods: {
         setMyEchart() {
-            const myChart = this.$refs.myechart;  //通过ref获取到DOM节点
+            this.getAll();
+            this.arr.forEach(ele=>{
+                if(this.name === ele.name && this.data === '基础数据'){
+                    this.name = ele.name;
+                    // console.log(this.name)
+                    this.score = ele.score; this.backboard = ele.backboard; this.assist = ele.assist;
+                    this.stolen = ele.stolen;   this.block = ele.block;
+                    this.averscore = 9.1; this.averbackboard = 3.5; this.averassist = 2,
+                    this.averstolen = 0.6;    this.averblock = 0.4;
+                    this.maxscore = '33.2'; this.maxbackboard = '13.4'; this.maxassist = '10.9',
+                    this.maxstolen = '2.2';    this.maxblock = '2.3';
+                    this.first = '得分'; this.second = '篮板'; this.third = '助攻',
+                    this.four = '抢断';    this.five = '盖帽';
+                }
+                if(this.name === ele.name && this.data === '高阶数据'){
+                    this.name = ele.name;
+                    console.log(this.name)
+                    this.score = ele.time;  this.backboard = ele.EPM + 6.5;   this.assist = ele.LEBRON + 3.8;
+                    this.stolen = ele.RAPTOR + 7.9;   this.block = ele.BPM + 6.1;
+                    this.averscore = 19.7; this.averbackboard = 6.3; this.averassist = 3.6,
+                    this.averstolen = 7.5;    this.averblock = 5.9;
+                    this.maxscore = '37.7'; this.maxbackboard = '15.2'; this.maxassist = '11.4',
+                    this.maxstolen = '22.5';    this.maxblock = '19.5';
+                    this.first = '时间'; this.second = 'EPM'; this.third = 'LEBRON',
+                    this.four = 'RAPTOR';    this.five = 'BPM';
+                }
+            })
+            // 通过ref获取到DOM节点
+            const myChart = this.$refs.myechart;
             if (myChart) {
                 const thisChart = echarts.init(myChart);  //利用原型调取Echarts的初始化方法
                 const option = {
@@ -72,13 +153,13 @@ export default{
                         enterable: true //鼠标是否可以移动到tooltip区域内
                     },
                     legend: {
-                        // top : '96%',                    // 图例距离顶部边距
+                        // top : '96%', // 图例距离顶部边距
                         textStyle: {
                             coFlor: "#202124",
                             fontWeight: "bold",
                             fontSize: "14"
                         },
-                        data: [this.name, "班级平均"]
+                        data: [this.name, "联盟平均"]
                     },
 
                     calculable: true,
@@ -94,11 +175,11 @@ export default{
                             }
                         },
                         indicator: [
-                            { name: "得分", max: 33.2 },
-                            { name: "篮板", max: 13.4 },
-                            { name: "助攻", max: 10.9 },
-                            { name: "抢断", max: 2.2 },
-                            { name: "盖帽", max: 2.3 }
+                            { name: this.first, max: this.maxscore},
+                            { name: this.second, max: this.maxbackboard },
+                            { name: this.third, max: this.maxassist },
+                            { name: this.four, max: this.maxstolen },
+                            { name: this.five, max: this.maxblock },
                         ],
                         radius: 80
                     },
@@ -108,15 +189,23 @@ export default{
                             data: [
                                 {
                                     value: [
-                                        29.6,6.4,6.3,1.0,0.3
+                                        this.score,
+                                        this.backboard,
+                                        this.assist,
+                                        this.stolen,
+                                        this.block,
                                     ],
                                     name: this.name
                                 },
                                 {
                                     value: [
-                                        0.90, 0.85, 0.37, 0.85, 0.52
+                                        this.averscore,
+                                        this.averbackboard,
+                                        this.averassist,
+                                        this.averstolen,
+                                        this.averblock,
                                     ],
-                                    name: "班级平均"
+                                    name: "联盟平均"
                                 }
                             ]
                         }
@@ -127,7 +216,11 @@ export default{
                     thisChart.resize();  //页面大小变化后Echarts也更改大小
                 });
             }
-        }
+        },
+        async getAll(){
+            const res = await http.get('/playerdata/queryall')
+            this.arr = res.data.data;
+        },
     }
 }
 </script>
@@ -135,5 +228,10 @@ export default{
 <style lang="scss" scoped>
 .bread{
     padding-top: 20px;
+}
+.add{
+    padding-top: 10px;
+    font-size: 12px;
+    color: #c0c4cc;
 }
 </style>
