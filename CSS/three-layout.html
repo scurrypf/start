@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三栏布局</title>
+    <style>
+        /* 第一种float
+        .container{
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .right{
+            float: right;
+            width: 150px;
+            height: 500px;
+            background-color: blueviolet;
+        }
+        .medium{
+            width: 100%;
+            height: 500px;
+            margin-left: 210px;
+            margin-right: 160px;
+            background-color: red;
+        }
+        .left{
+            float: left;
+            width: 200px;
+            height: 500px;
+            background-color: aqua;
+        } */
+        /* 第二种absolute
+        .container{
+            position: relative;
+        }
+        .right{
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            width: 150px;
+            height: 500px;
+            background-color: blueviolet;
+        }
+        .medium{
+            height: 500px;
+            margin-left: 210px;
+            margin-right: 160px;
+            background-color: red;
+        }
+        .left{
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 200px;
+            height: 500px;
+            background-color: aqua;
+        } */
+        /*第三种flex*/
+        .container{
+            display: flex;
+            justify-content: space-between;
+        }
+        .right{
+            width: 150px;
+            height: 500px;
+            background-color: blueviolet;
+        }
+        .medium{
+            flex: 1;
+            height: 500px;
+            background-color: red;
+        }
+        .left{
+            width: 200px;
+            height: 500px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <!--三栏布局，中间自适应-->
+    <!--注：float与absolute布局时为左右中-->
+    <!-- <div class="container">
+        <div class="left"></div>
+        <div class="right"></div>
+        <div class="medium"></div>
+    </div> -->
+    <!--注：flex布局时为左中右-->
+    <div class="container">
+        <div class="left"></div>
+        <div class="medium"></div>
+        <div class="right"></div>
+    </div>
+</body>
+</html>
