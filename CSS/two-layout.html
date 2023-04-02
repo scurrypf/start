@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*第一种float*/
+        .container{
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .left{
+            float: left;
+            width: 100px;
+            height: 100px;
+            background-color: antiquewhite;
+        }
+        .right{
+            width: 100%;
+            height: 100px;
+            margin-left: 110px;
+            background-color: red;
+        }
+        /*第二种flex*/
+        .container{
+            display: flex;
+        }
+        .left{
+            width: 100px;
+            height: 100px;
+            background-color: aqua;
+        }
+        .right{
+            
+            flex: 1;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <!--两栏布局右侧自适应-->
+    <div class="container">
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+</body>
+</html>
