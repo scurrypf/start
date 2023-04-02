@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>三角形&空心三角形</title>
     <style>
         .trangle{
             width: 0;
@@ -13,7 +13,20 @@
             border-right: 50px solid transparent;
             border-left: 50px solid transparent;
             border-bottom: 50px solid red;
-            border-radius: 50%;
+            /* border-radius: 50%; */
+            position: relative;
+        }
+        /*通过after以及绝对定位实现一个空心三角形*/
+        .trangle:after{
+            content: '';
+            position: absolute;
+            top: 6px;
+            left: -40px;
+            border-top: 0px solid transparent;
+            border-right: 40px solid transparent;
+            border-left: 40px solid transparent;
+            border-bottom: 40px solid white;
+            /* border-radius: 50%; */
         }
     </style>
 </head>
