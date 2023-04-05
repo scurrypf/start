@@ -1,7 +1,7 @@
 class EventEmitter{
     constructor(){
         this.event = {
-            // 这里面存入时间名以及其对应的函数数组
+            // 这里面存入事件名以及其对应的函数数组
         }
     }
     // 订阅事件
@@ -49,4 +49,4 @@ eventBus.on('test', fun)
 eventBus.emit('test', fun)
 eventBus.off('test', fun)
 eventBus.once('test', fun)
-// console.log(eventBus);
+console.log(eventBus);
