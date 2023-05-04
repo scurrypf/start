@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简单的双向数据绑定</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <input type="text" />
+        <h1></h1>    
+    </div>
+</body>
+<script>
+    function defineProptyFn(obj) {
+        let val = null;
+        for (let key in obj) {
+            if (typeof key === 'object') {
+                definePropty(key)
+            }
+            Object.defineProperty(obj, key, {
+                get: function () {
+                    console.log(`获取${val}`)
+                    return val
+                },
+                set: function (newVal) {
+                    if (val !== newVal) {
+                        val = newVal
+                        document.querySelector('h1').innerHTML = newVal;
+                        console.log(`更新${newVal}`)
+                    }
+                }
+            })
+        }
+    }
+    let obj = {
+        num: 0,
+    }
+    defineProptyFn(obj);
+    document.querySelector('h1').innerHTML = obj.num
+    document.querySelector('input').value = obj.num;
+    // 监听视图 input 标签，标签一变动，将最新数据获取调用set，赋值给val，并且赋值给h1
+    document.querySelector('input').addEventListener('input', () => {
+        obj.num = document.querySelector('input').value
+    })
+</script>
+
+</html>
