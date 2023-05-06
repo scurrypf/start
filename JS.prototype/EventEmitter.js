@@ -22,6 +22,16 @@ class EventEmitter{
             return;
         }
     }
+    // 异步执行
+    async emits(type, ...args){
+        if(this.event[type]){
+            for(let element of this.event[type]){
+                await element(...args)
+            }
+        }else{
+            return;
+        }
+    }
     // 只执行一次订阅事件函数
     once(type, callback){
         let fun = ()=>{
