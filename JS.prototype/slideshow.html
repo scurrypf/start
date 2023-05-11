@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>simple-show</title>
+    <style>
+        .slideshow-container {
+            position: relative;
+        }
+
+        .slide-images img {
+            display: none;
+            width: 100%;
+        }
+
+        .prev,
+        .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 40px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .prev {
+            left: 0;
+        }
+
+        .next {
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slideshow-container">
+        <div class="slide-images">
+            <img src="https://picsum.photos/id/1015/800/400" alt="">
+            <img src="https://picsum.photos/id/1056/800/400" alt="">
+            <img src="https://picsum.photos/id/1043/800/400" alt="">
+        </div>
+        <!--前进后退按钮-->
+        <a class="prev">&#10094;</a>
+        <a class="next">&#10095;</a>
+    </div>
+    <script>
+        class Slideshow {
+            constructor(element) {
+                // 获取该元素
+                this.element = element;
+                // 获取所有图片
+                this.images = element.querySelector('.slide-images').children;
+                this.prevButton = element.querySelector('.prev');
+                this.nextButton = element.querySelector('.next');
+                this.currentImageIndex = 0;// 当前图片索引
+                this.showImage(this.currentImageIndex);
+                // 前一张
+                this.prevButton.addEventListener('click', (event) => {
+                    this.showPreviousImage();
+                });
+                // 后一张
+                this.nextButton.addEventListener('click', (event) => {
+                    this.showNextImage();
+                });
+            }
+
+            showImage(imageIndex) {
+                // 将所有图片都变为none
+                Array.from(this.images).forEach((image) => {
+                    image.style.display = 'none';
+                });
+                // 将对应索引display置为block
+                this.images[imageIndex].style.display = 'block';
+            }
+
+            startAutoPlay() {
+                // 每 3 秒自动轮播
+                this.timer = setInterval(() => {
+                    this.showNextImage()
+                }, 3000)
+            }
+
+            stopAutoPlay() {
+                // 停止自动轮播
+                clearInterval(this.timer);
+            }
+
+            showNextImage() {
+                this.stopAutoPlay()
+                this.currentImageIndex = (this.currentImageIndex + 1) % this.images.length;
+                this.showImage(this.currentImageIndex);
+                this.startAutoPlay()
+            }
+
+            showPreviousImage() {
+                this.stopAutoPlay();
+                this.currentImageIndex = (this.currentImageIndex - 1 + this.images.length) % this.images.length;
+                this.showImage(this.currentImageIndex);
+                this.startAutoPlay()
+            }
+        }
+
+        const slideshow = new Slideshow(document.querySelector('.slideshow-container'));
+        slideshow.startAutoPlay();
+    </script>
+</body>
+
+</html>
