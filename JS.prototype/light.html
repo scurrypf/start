@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>light</title>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .traffic-light {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .light {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin: 10px;
+            border: 1px solid black;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .yellow {
+            background-color: yellow;
+        }
+
+        .green {
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="traffic-light">
+            <div class="light red"></div>
+            <div class="light yellow"></div>
+            <div class="light green"></div>
+        </div>
+        <button id="toggleBtn">Start</button>
+    </div>
+    <script>
+        // 我们首先获取了红绿灯中三个灯的DOM元素和按钮的DOM元素。我们用currentLight变量来记录当前亮灯的颜色，
+        // 接着我们定义了一个switchLight()函数来控制灯泡的亮灭，每次递增一个数字指示下一个需要亮的灯，
+        // 我们也搭配了CSS的opacity属性来模拟灯泡的闪烁。最后我们创建了一个startTrafficLight()函数，
+        // 并使用setInterval()方法制定了一个1秒的计时器，这个计时器在每秒的间隔内不断切换灯光，
+        // 并且我们添加了一个按钮事件监听器来开始或暂停这个计时器。
+        const redLight = document.querySelector('.red');
+        const yellowLight = document.querySelector('.yellow');
+        const greenLight = document.querySelector('.green');
+        const toggleBtn = document.querySelector('#toggleBtn');
+
+        let currentLight = 0; // 0: red, 1: green, 2: yellow
+        let intervalId;
+
+        function switchLight() {
+            setInterval(() => {
+                redLight.style.opacity = 1;
+                yellowLight.style.opacity = 0.3;
+                greenLight.style.opacity = 0.3;
+                setTimeout(() => {
+                    redLight.style.opacity = 0.3;
+                    yellowLight.style.opacity = 0.3;
+                    greenLight.style.opacity = 1;
+                    setTimeout(() => {
+                        redLight.style.opacity = 0.3;
+                        yellowLight.style.opacity = 1;
+                        greenLight.style.opacity = 0.3;
+                    }, 1000)
+                }, 5000)
+            }, 9000)
+        }
+
+        function startTrafficLight() {
+            if (!intervalId) {
+                toggleBtn.textContent = "Stop";
+                switchLight();
+            } else {
+                toggleBtn.textContent = "Start";
+                clearInterval(intervalId);
+                intervalId = null;
+            }
+        }
+
+        toggleBtn.addEventListener('click', startTrafficLight);
+    </script>
+</body>
+
+</html>
