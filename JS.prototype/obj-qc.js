@@ -10,3 +10,15 @@ Object.prototype.unique = function(){
     }
     return res;
 }
+
+// 对象数组去重
+const arr = [
+    { id: 1, name: 'John' },
+    { id: 2, name: 'Jane' },
+    { id: 1, name: 'John' },
+    { id: 3, name: 'Mike' }
+];
+  
+const uniqueArr = Array.from(new Set(arr.map(JSON.stringify))).map(JSON.parse);
+  
+console.log(uniqueArr);
